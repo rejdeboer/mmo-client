@@ -50,8 +50,11 @@ func _on_connect_button_pressed() -> void:
 
 	# Let's give it a moment, then check status (simplified for this example)
 	# In a real app, you'd use a timer or check in _process
-	await get_tree().create_timer(0.1).timeout # Short delay to allow connection
-	
+	await get_tree().create_timer(0.5).timeout # Short delay to allow connection
+	err = client.poll()
+	if err != OK:
+		status_label.text = "Status: Polling failed: " + str(err)
+
 	if client.get_status() == StreamPeerTCP.STATUS_CONNECTED:
 		is_connected = true
 		status_label.text = "Status: Connected to " + ip + ":" + str(port)
