@@ -15,6 +15,10 @@ func _ready() -> void:
 	send_button.pressed.connect(_on_send_button_pressed)
 	send_button.disabled = true # Start with send button disabled
 
+	# TODO: Remove
+	var testing = TestStruct.new()
+	testing.print()
+
 func _on_connect_button_pressed() -> void:
 	if is_connected:
 		# Disconnect logic (optional for this simple test, or add a disconnect button)
