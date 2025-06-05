@@ -4,7 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [lib]
-crate-type = ["cdylib"]  # Compile this crate to a dynamic C library.
+crate-type = ["cdylib"] # Compile this crate to a dynamic C library.
 
 [dependencies]
 godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
+mmo-client = { git = "ssh://git@github.com/rejdeboer/mmo-server.git", branch = "main" }
