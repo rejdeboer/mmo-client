@@ -251,7 +251,7 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 [[package]]
 name = "mmo-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#ebdd91a76b27fdd4e5dace036d008132543142ee"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#879ca0885e704fb04dee3d09b6743541ac3116c0"
 dependencies = [
  "flatbuffers",
  "renet",
@@ -415,7 +415,7 @@ dependencies = [
 [[package]]
 name = "schemas"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#ebdd91a76b27fdd4e5dace036d008132543142ee"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#879ca0885e704fb04dee3d09b6743541ac3116c0"
 dependencies = [
  "flatbuffers",
  "flatc-rust",
