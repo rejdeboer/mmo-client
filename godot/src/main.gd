@@ -88,3 +88,8 @@ func _process(_delta: float) -> void:
 	# 		# This might happen if get_data failed internally after available_bytes > 0
 	# 		# or if the server sent an empty payload that still registered bytes.
 	# 		print("Received 0 bytes despite available_bytes > 0, or error in get_data.")
+
+
+func _on_connection_success() -> void:
+	print("CONNECTED")
+	pass # Replace with function body.
