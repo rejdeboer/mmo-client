@@ -46,6 +46,7 @@ impl INode3D for NetworkManager {
         let events = self.client.update(Duration::from_secs_f64(dt));
         for event in events {
             match event {
+                ClientEvent::Connected => self.signals().connection_success().emit(),
                 ClientEvent::EnterGameSuccess { character } => self
                     .signals()
                     .enter_game_success()
@@ -58,6 +59,9 @@ impl INode3D for NetworkManager {
 
 #[godot_api]
 impl NetworkManager {
+    #[signal]
+    fn connection_success();
+
     #[signal]
     fn enter_game_success(character: Gd<Character>);
 
