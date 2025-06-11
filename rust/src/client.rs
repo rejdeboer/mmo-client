@@ -1,5 +1,7 @@
 use std::time::Duration;
 
+use godot::classes::ConfigFile;
+use godot::global::Error;
 use godot::prelude::*;
 use mmo_client::{ClientEvent, GameClient};
 
