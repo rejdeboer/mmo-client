@@ -44,7 +44,6 @@ pub struct NetworkManagerSingleton {
 impl INode for NetworkManagerSingleton {
     fn process(&mut self, dt: f64) {
         let events = self.client.update(Duration::from_secs_f64(dt));
-        godot_print!("state is {:?}", self.client.get_state());
         for event in events {
             godot_print!("received {:?} event", event);
             match event {
