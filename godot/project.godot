@@ -18,3 +18,4 @@ config/icon="res://assets/images/icon.svg"
 [autoload]
 
 NetworkManager="*res://src/scenes/autoload/network_manager.tscn"
+ConfigManager="*res://src/scenes/autoload/config_manager.tscn"
