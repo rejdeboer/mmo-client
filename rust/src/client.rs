@@ -40,14 +40,8 @@ pub struct NetworkManagerSingleton {
     base: Base<Node>,
 }
 
-// TODO: This should become a singleton, state isn't handled correctly atm
 #[godot_api]
 impl INode for NetworkManagerSingleton {
-    fn ready(&mut self) {
-        godot_print!("setting up network manager");
-        self.base_mut().set_process(true);
-    }
-
     fn process(&mut self, dt: f64) {
         let events = self.client.update(Duration::from_secs_f64(dt));
         godot_print!("state is {:?}", self.client.get_state());
