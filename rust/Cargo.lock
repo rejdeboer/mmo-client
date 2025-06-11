@@ -35,9 +35,9 @@ checksum = "d71b6127be86fdcfddb610f7182ac57211d4b18a3e9c82eb2d17662f2227ad6a"
 
 [[package]]
 name = "cfg-if"
-version = "1.0.0"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+checksum = "9555578bc9e57714c812a1f84e4fc5b4d21fcb063490c624de019f7464c91268"
 
 [[package]]
 name = "chacha20"
@@ -147,8 +147,8 @@ checksum = "6b46b9ca4690308844c644e7c634d68792467260e051c8543e0c7871662b3ba7"
 
 [[package]]
 name = "godot"
-version = "0.3.0"
-source = "git+https://github.com/godot-rust/gdext?branch=master#8d7d8eb8abff4f71d223ae3c9e94d1a21238e0ba"
+version = "0.3.1"
+source = "git+https://github.com/godot-rust/gdext?branch=master#a6932c7a17570f67435dc0d0ba478a770485f28f"
 dependencies = [
  "godot-core",
  "godot-macros",
@@ -156,21 +156,21 @@ dependencies = [
 
 [[package]]
 name = "godot-bindings"
-version = "0.3.0"
-source = "git+https://github.com/godot-rust/gdext?branch=master#8d7d8eb8abff4f71d223ae3c9e94d1a21238e0ba"
+version = "0.3.1"
+source = "git+https://github.com/godot-rust/gdext?branch=master#a6932c7a17570f67435dc0d0ba478a770485f28f"
 dependencies = [
  "gdextension-api",
 ]
 
 [[package]]
 name = "godot-cell"
-version = "0.3.0"
-source = "git+https://github.com/godot-rust/gdext?branch=master#8d7d8eb8abff4f71d223ae3c9e94d1a21238e0ba"
+version = "0.3.1"
+source = "git+https://github.com/godot-rust/gdext?branch=master#a6932c7a17570f67435dc0d0ba478a770485f28f"
 
 [[package]]
 name = "godot-codegen"
-version = "0.3.0"
-source = "git+https://github.com/godot-rust/gdext?branch=master#8d7d8eb8abff4f71d223ae3c9e94d1a21238e0ba"
+version = "0.3.1"
+source = "git+https://github.com/godot-rust/gdext?branch=master#a6932c7a17570f67435dc0d0ba478a770485f28f"
 dependencies = [
  "godot-bindings",
  "heck",
@@ -182,8 +182,8 @@ dependencies = [
 
 [[package]]
 name = "godot-core"
-version = "0.3.0"
-source = "git+https://github.com/godot-rust/gdext?branch=master#8d7d8eb8abff4f71d223ae3c9e94d1a21238e0ba"
+version = "0.3.1"
+source = "git+https://github.com/godot-rust/gdext?branch=master#a6932c7a17570f67435dc0d0ba478a770485f28f"
 dependencies = [
  "glam",
  "godot-bindings",
@@ -194,8 +194,8 @@ dependencies = [
 
 [[package]]
 name = "godot-ffi"
-version = "0.3.0"
-source = "git+https://github.com/godot-rust/gdext?branch=master#8d7d8eb8abff4f71d223ae3c9e94d1a21238e0ba"
+version = "0.3.1"
+source = "git+https://github.com/godot-rust/gdext?branch=master#a6932c7a17570f67435dc0d0ba478a770485f28f"
 dependencies = [
  "godot-bindings",
  "godot-codegen",
@@ -205,8 +205,8 @@ dependencies = [
 
 [[package]]
 name = "godot-macros"
-version = "0.3.0"
-source = "git+https://github.com/godot-rust/gdext?branch=master#8d7d8eb8abff4f71d223ae3c9e94d1a21238e0ba"
+version = "0.3.1"
+source = "git+https://github.com/godot-rust/gdext?branch=master#a6932c7a17570f67435dc0d0ba478a770485f28f"
 dependencies = [
  "godot-bindings",
  "libc",
@@ -251,7 +251,7 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 [[package]]
 name = "mmo-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#879ca0885e704fb04dee3d09b6743541ac3116c0"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#df8c0e1b54dbed1c30783c5b8853fd2bf7e4157a"
 dependencies = [
  "flatbuffers",
  "renet",
@@ -415,7 +415,7 @@ dependencies = [
 [[package]]
 name = "schemas"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#879ca0885e704fb04dee3d09b6743541ac3116c0"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#df8c0e1b54dbed1c30783c5b8853fd2bf7e4157a"
 dependencies = [
  "flatbuffers",
  "flatc-rust",
@@ -435,9 +435,9 @@ checksum = "13c2bddecc57b384dee18652358fb23172facb8a2c51ccc10d74c157bdea3292"
 
 [[package]]
 name = "syn"
-version = "2.0.101"
+version = "2.0.102"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ce2b7fc941b3a24138a0a7cf8e858bfc6a992e7978a068a5c760deb0ed43caf"
+checksum = "f6397daf94fa90f058bd0fd88429dd9e5738999cca8d701813c80723add80462"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -457,9 +457,9 @@ dependencies = [
 
 [[package]]
 name = "tracing-attributes"
-version = "0.1.28"
+version = "0.1.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "395ae124c09f9e6918a2310af6038fba074bcf474ac352496d5910dd59a2226d"
+checksum = "1b1ffbcf9c6f6b99d386e7444eb608ba646ae452a36b39737deb9663b610f662"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -468,9 +468,9 @@ dependencies = [
 
 [[package]]
 name = "tracing-core"
-version = "0.1.33"
+version = "0.1.34"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e672c95779cf947c5311f83787af4fa8fffd12fb27e4993211a84bdfd9610f9c"
+checksum = "b9d12581f227e93f094d3af2ae690a574abb8a2b9b7a96e7cfe9647b2b617678"
 dependencies = [
  "once_cell",
 ]
@@ -515,9 +515,9 @@ checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
 
 [[package]]
 name = "wasi"
-version = "0.11.0+wasi-snapshot-preview1"
+version = "0.11.1+wasi-snapshot-preview1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
+checksum = "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b"
 
 [[package]]
 name = "zeroize"

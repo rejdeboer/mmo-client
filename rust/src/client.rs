@@ -33,18 +33,26 @@ impl From<mmo_client::Character> for Character {
 // }
 
 #[derive(GodotClass)]
-#[class(base=Node3D, init)]
-struct NetworkManager {
+#[class(base=Node, init)]
+pub struct NetworkManagerSingleton {
     client: GameClient,
 
-    base: Base<Node3D>,
+    base: Base<Node>,
 }
 
+// TODO: This should become a singleton, state isn't handled correctly atm
 #[godot_api]
-impl INode3D for NetworkManager {
+impl INode for NetworkManagerSingleton {
+    fn ready(&mut self) {
+        godot_print!("setting up network manager");
+        self.base_mut().set_process(true);
+    }
+
     fn process(&mut self, dt: f64) {
         let events = self.client.update(Duration::from_secs_f64(dt));
+        godot_print!("state is {:?}", self.client.get_state());
         for event in events {
+            godot_print!("received {:?} event", event);
             match event {
                 ClientEvent::Connected => self.signals().connection_success().emit(),
                 ClientEvent::EnterGameSuccess { character } => self
@@ -58,7 +66,7 @@ impl INode3D for NetworkManager {
 }
 
 #[godot_api]
-impl NetworkManager {
+impl NetworkManagerSingleton {
     #[signal]
     fn connection_success();
 
@@ -66,8 +74,8 @@ impl NetworkManager {
     fn enter_game_success(character: Gd<Character>);
 
     #[func]
-    pub fn connect(&mut self, host: String, port: u16) {
-        godot_print!("CONNECTING");
+    pub fn connect_to_server(&mut self, host: String, port: u16) {
+        godot_print!("connecting to {}:{}", host, port);
         self.client.connect(host, port);
     }
 

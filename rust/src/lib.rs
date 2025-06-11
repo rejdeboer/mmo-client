@@ -4,9 +4,6 @@ use godot::prelude::*;
 
 struct MyExtension;
 
-#[gdextension]
-unsafe impl ExtensionLibrary for MyExtension {}
-
 #[derive(GodotClass)]
 #[class(init)]
 struct TestStruct {}
@@ -18,3 +15,6 @@ impl TestStruct {
         godot_print!("Print from extension!");
     }
 }
+
+#[gdextension]
+unsafe impl ExtensionLibrary for MyExtension {}

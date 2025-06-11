@@ -7,8 +7,6 @@ extends Control
 @onready var send_button: Button = $SendButton
 @onready var status_label: Label = $StatusLabel
 
-var manager = NetworkManager.new()
-
 func _ready() -> void:
 	connect_button.pressed.connect(_on_connect_button_pressed)
 	send_button.pressed.connect(_on_send_button_pressed)
@@ -33,7 +31,7 @@ func _on_connect_button_pressed() -> void:
 		return
 
 	status_label.text = "Status: Connecting..."
-	manager.connect(ip, port)
+	NetworkManager.connect_to_server(ip, port)
 
 	# if err != OK:
 	# 	status_label.text = "Status: Connection failed. Error: " + str(err)

@@ -14,3 +14,7 @@ config/name="MMO Client"
 run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/images/icon.svg"
+
+[autoload]
+
+NetworkManager="*res://src/network_manager.tscn"
