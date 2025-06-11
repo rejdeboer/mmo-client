@@ -76,6 +76,4 @@ impl NetworkManagerSingleton {
     pub fn send_enter_game_request(&mut self, character_id: i32, token: String) {
         self.client.send_enter_game_request(character_id, token);
     }
-
-    // fn trigger_enter_game_success(&mut self, character: mmo_client::Character) {}
 }
