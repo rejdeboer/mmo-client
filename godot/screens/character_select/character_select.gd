@@ -73,5 +73,4 @@ func _on_play_button_pressed() -> void:
 		# 4. Send the selected character ID to enter the world.
 		
 func _on_create_character_button_pressed() -> void:
-	pass
-	# get_tree().change_scene_to_file("res://screens/character_creation/character_creation.tscn")
+	get_tree().change_scene_to_file("res://screens/character_creation/character_creation.tscn")
