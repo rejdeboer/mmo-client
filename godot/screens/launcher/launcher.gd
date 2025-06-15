@@ -17,8 +17,6 @@ extends Control
 
 @onready var http_request: HTTPRequest = $HTTPRequest
 
-var base_url = ConfigManager.get_value("web_server", "base_url") 
-
 
 func _ready() -> void:
 	_show_login_view(true)
@@ -82,7 +80,7 @@ func _on_go_to_login_button_pressed() -> void:
 
 
 func _make_http_request(endpoint: String, body: Dictionary) -> void:
-	var url = base_url + endpoint
+	var url = ConfigManager.web_server.base_url + endpoint
 	var headers = ["Content-Type: application/json"]
 	var body_json = JSON.stringify(body)
 	
