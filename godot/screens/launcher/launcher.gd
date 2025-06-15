@@ -119,9 +119,8 @@ func handle_success(response: Dictionary) -> void:
 	if response.has("token"):
 		print("Login successful! JWT: ", response["token"])
 		login_status_label.text = "Login Successful!"
-		
-		# TODO: Save the JWT and move to the next step
-		# (e.g., request game entry token).
+		PlayerSession.store_session(response["token"])
+		get_tree().change_scene_to_file("res://screens/character_select/character_select.tscn")
 		
 	else: # For registration
 		_show_login_view(true)
