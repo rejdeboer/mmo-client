@@ -58,10 +58,12 @@ layout_mode = 2
 
 [node name="EmailInput" type="LineEdit" parent="LoginPanel/VBoxContainer"]
 layout_mode = 2
+text = "rick.deboer@live.nl"
 placeholder_text = "Email"
 
 [node name="PasswordInput" type="LineEdit" parent="LoginPanel/VBoxContainer"]
 layout_mode = 2
+text = "Test123!"
 placeholder_text = "Password"
 secret = true
 
