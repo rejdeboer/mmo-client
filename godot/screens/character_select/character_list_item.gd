@@ -4,8 +4,8 @@ signal selected(character_data)
 
 var character_data: Dictionary
 
-@onready var name_label: Label = %NameLabel
-@onready var level_label: Label = %LevelLabel
+@onready var name_label: Label = $HBoxContainer/NameLabel
+@onready var level_label: Label = $HBoxContainer/LevelLabel
 
 func set_character_data(data: Dictionary):
 	self.character_data = data
