@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckphpin1d5ifq"]
+
+[ext_resource type="Script" uid="uid://de0cm683cticx" path="res://src/launcher/launcher.gd" id="1_rvth2"]
+
+[node name="Launcher" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 14.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rvth2")
+
+[node name="RegisterPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 162.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RegisterPanel"]
+layout_mode = 2
+
+[node name="UsernameInput" type="LineEdit" parent="RegisterPanel/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="EmailInput" type="LineEdit" parent="RegisterPanel/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Email"
+
+[node name="PasswordInput" type="LineEdit" parent="RegisterPanel/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Password"
+secret = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RegisterPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="RegisterButton" type="Button" parent="RegisterPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Register"
+
+[node name="StatusLabel" type="Label" parent="RegisterPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoginPanel" type="PanelContainer" parent="."]
+offset_left = 200.0
+offset_top = 35.0
+offset_right = 399.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginPanel"]
+layout_mode = 2
+
+[node name="EmailInput" type="LineEdit" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Email"
+
+[node name="PasswordInput" type="LineEdit" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Password"
+secret = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoginButton" type="Button" parent="LoginPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Login"
+
+[node name="GoToRegisterButton" type="Button" parent="LoginPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Create account"
+flat = true
+
+[node name="StatusLabel" type="Label" parent="LoginPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="RegisterPanel/VBoxContainer/HBoxContainer/RegisterButton" to="." method="_on_register_button_pressed"]
+[connection signal="pressed" from="LoginPanel/VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="LoginPanel/VBoxContainer/HBoxContainer/GoToRegisterButton" to="." method="_on_go_to_register_button_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_completed"]
