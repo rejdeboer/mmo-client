@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bcbjugcv8s8t"]
+[gd_scene load_steps=2 format=3 uid="uid://bcbjugcv8s8t"]
+
+[ext_resource type="Script" uid="uid://deupyxhvyjxsp" path="res://globals/player_session.gd" id="1_kgojv"]
 
 [node name="PlayerSession" type="Node"]
+script = ExtResource("1_kgojv")

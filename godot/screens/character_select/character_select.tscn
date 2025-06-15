@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bsm7sudkmgw6y"]
+[gd_scene load_steps=2 format=3 uid="uid://bsm7sudkmgw6y"]
+
+[ext_resource type="Script" uid="uid://c64q6cslr7vf6" path="res://screens/character_select/character_select.gd" id="1_4sm21"]
 
 [node name="CharacterSelect" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4sm21")
 
 [node name="CharacterSelectPanel" type="PanelContainer" parent="."]
 offset_right = 162.0
@@ -15,25 +18,29 @@ offset_bottom = 136.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CharacterSelectPanel"]
 layout_mode = 2
 
-[node name="UsernameInput" type="LineEdit" parent="CharacterSelectPanel/VBoxContainer"]
+[node name="Title" type="Label" parent="CharacterSelectPanel/VBoxContainer"]
 layout_mode = 2
-placeholder_text = "Username"
+text = "Select Your Character"
 
-[node name="EmailInput" type="LineEdit" parent="CharacterSelectPanel/VBoxContainer"]
+[node name="CharacterListContainer" type="VBoxContainer" parent="CharacterSelectPanel/VBoxContainer"]
 layout_mode = 2
-placeholder_text = "Email"
-
-[node name="PasswordInput" type="LineEdit" parent="CharacterSelectPanel/VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Password"
-secret = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelectPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="RegisterButton" type="Button" parent="CharacterSelectPanel/VBoxContainer/HBoxContainer"]
+[node name="CreateCharacterButton" type="Button" parent="CharacterSelectPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Register"
+text = "Create new character"
+
+[node name="PlayButton" type="Button" parent="CharacterSelectPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Enter World"
 
 [node name="StatusLabel" type="Label" parent="CharacterSelectPanel/VBoxContainer"]
 layout_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="CharacterSelectPanel/VBoxContainer/HBoxContainer/CreateCharacterButton" to="." method="_on_create_character_button_pressed"]
+[connection signal="pressed" from="CharacterSelectPanel/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_completed"]
