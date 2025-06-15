@@ -17,7 +17,7 @@ extends Control
 
 @onready var http_request: HTTPRequest = $HTTPRequest
 
-const BASE_URL = "http://127.0.0.1:8001/" 
+var base_url = ConfigManager.get_value("web_server", "base_url") 
 
 
 func _ready() -> void:
@@ -82,7 +82,7 @@ func _on_go_to_login_button_pressed() -> void:
 
 
 func _make_http_request(endpoint: String, body: Dictionary) -> void:
-	var url = BASE_URL + endpoint
+	var url = base_url + endpoint
 	var headers = ["Content-Type: application/json"]
 	var body_json = JSON.stringify(body)
 	
@@ -141,5 +141,3 @@ func handle_server_error() -> void:
 	var error_message = "Server error. Please try again later."
 	login_status_label.text = error_message
 	register_status_label.text = error_message
-
-

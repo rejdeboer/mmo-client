@@ -22,8 +22,8 @@ func _on_connect_button_pressed() -> void:
 	# 	printerr("Disconnected.")
 	# 	return
 
-	var ip: String = ConfigManager.get_value("server", "host")
-	var port: int = ConfigManager.get_value("server", "port")
+	var ip: String = ConfigManager.get_value("game_server", "host")
+	var port: int = ConfigManager.get_value("game_server", "port")
 
 	if ip.is_empty() or port <= 0 or port > 65535:
 		status_label.text = "Status: Invalid IP or Port"
