@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckphpin1d5ifq"]
 
-[ext_resource type="Script" uid="uid://de0cm683cticx" path="res://src/launcher/launcher.gd" id="1_rvth2"]
+[ext_resource type="Script" uid="uid://de0cm683cticx" path="res://screens/launcher/launcher.gd" id="1_63yqy"]
 
 [node name="Launcher" type="Control"]
 layout_mode = 3
@@ -13,7 +13,7 @@ offset_right = 14.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rvth2")
+script = ExtResource("1_63yqy")
 
 [node name="RegisterPanel" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -47,6 +47,7 @@ text = "Register"
 layout_mode = 2
 
 [node name="LoginPanel" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 200.0
 offset_top = 35.0
 offset_right = 399.0
