@@ -27,16 +27,25 @@ func fetch_character_list() -> void:
 	http_request.request(url, headers, HTTPClient.METHOD_GET)
 
 func _on_http_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	var response_body = {}
+	if body.size() > 0:
+		response_body = JSON.parse_string(body.get_string_from_utf8())
+
 	if response_code == 200:
-		var json = JSON.new()
-		var error = json.parse(body.get_string_from_utf8())
-		if error == OK:
-			populate_character_list(json.data)
-			status_label.text = "Please select a character."
-		else:
-			status_label.text = "Error: Could not parse character data."
+		handle_request_success(response_body)
 	else:
 		status_label.text = "Error fetching characters (Code: %d)" % response_code
+
+func handle_request_success(response: Variant):
+	if response.has("token"):
+		print("Login successful! Token: ", response["token"])
+		NetworkManager.connect_to_server(response["token"])
+		# TODO: Transition to game
+		
+	else: # For character list
+		populate_character_list(response)
+		status_label.text = "Please select a character."
+	
 
 func populate_character_list(characters: Array) -> void:
 	for child in list_container.get_children():
@@ -66,11 +75,19 @@ func _on_character_item_selected(character_data: Dictionary) -> void:
 func _on_play_button_pressed() -> void:
 	if selected_character_data:
 		print("Entering world with: ", selected_character_data.name)
-		# TODO: This is where you begin the next phase:
-		# 1. Request the one-time game entry token from the HTTP server.
-		# 2. Connect to the UDP game server.
-		# 3. Send the one-time token for authentication.
-		# 4. Send the selected character ID to enter the world.
+		var base_url = ConfigManager.web_server.base_url
+		var url = base_url + "game/request-entry" 
+		
+		var headers = [
+			"Content-Type: application/json",
+			"Authorization: Bearer " + PlayerSession.jwt 
+		]
+		var body = {
+			"character_id": int(selected_character_data.id),
+		}
+		
+		http_request.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
+
 		
 func _on_create_character_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://screens/character_creation/character_creation.tscn")
