@@ -31,7 +31,7 @@ func _on_connect_button_pressed() -> void:
 		return
 
 	status_label.text = "Status: Connecting..."
-	NetworkManager.connect_to_server(ip, port)
+	NetworkManager.connect_unsecure(ip, port)
 
 	# if err != OK:
 	# 	status_label.text = "Status: Connection failed. Error: " + str(err)

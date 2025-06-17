@@ -3,7 +3,7 @@ use std::time::Duration;
 use godot::classes::ConfigFile;
 use godot::global::Error;
 use godot::prelude::*;
-use mmo_client::{ClientEvent, GameClient};
+use mmo_client::{ClientEvent, GameClient, decode_token};
 
 #[derive(GodotClass, Debug, Clone)]
 #[class(base=RefCounted, init)]
@@ -69,13 +69,16 @@ impl NetworkManagerSingleton {
     fn enter_game_success(character: Gd<Character>);
 
     #[func]
-    pub fn connect_to_server(&mut self, host: String, port: u16) {
-        godot_print!("connecting to {}:{}", host, port);
-        self.client.connect(host, port);
+    pub fn connect_to_server(&mut self, encoded_token: String) {
+        godot_print!("securely connecting to server");
+        let token = decode_token(encoded_token).expect("token decoded");
+        self.client.connect(token);
     }
 
     #[func]
-    pub fn send_enter_game_request(&mut self, character_id: i32, token: String) {
-        self.client.send_enter_game_request(character_id, token);
+    /// Should only be used for local testing
+    pub fn connect_unsecure(&mut self, host: String, port: u16) {
+        godot_print!("connecting to {}:{}", host, port);
+        self.client.connect_unsecure(host, port);
     }
 }
