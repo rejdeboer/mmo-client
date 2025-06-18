@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://76lsy6jke61l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdft3"]
+albedo_color = Color(0.352941, 0.65098, 0.396078, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vn0wg"]
+material = SubResource("StandardMaterial3D_vdft3")
+size = Vector2(100, 100)
+
+[node name="World" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_vn0wg")
+
+[node name="Character" type="CharacterBody3D" parent="."]
+
+[node name="CharacterMesh" type="MeshInstance3D" parent="Character"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
+
+[node name="CameraRig" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
