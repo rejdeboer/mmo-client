@@ -77,8 +77,13 @@ impl NetworkManagerSingleton {
 
     #[func]
     /// Should only be used for local testing
-    pub fn connect_unsecure(&mut self, host: String, port: u16) {
-        godot_print!("connecting to {}:{}", host, port);
-        self.client.connect_unsecure(host, port);
+    pub fn connect_unsecure(&mut self, host: String, port: u16, character_id: i32) {
+        godot_print!(
+            "connecting to character {} on {}:{}",
+            character_id,
+            host,
+            port
+        );
+        self.client.connect_unsecure(host, port, character_id);
     }
 }

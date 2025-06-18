@@ -38,7 +38,6 @@ func _on_http_request_completed(result: int, response_code: int, headers: Packed
 
 func handle_request_success(response: Variant):
 	if response.has("token"):
-		print("Login successful! Token: ", response["token"])
 		NetworkManager.connect_to_server(response["token"])
 		# TODO: Transition to game
 		
