@@ -1,3 +1,5 @@
+# NOTE: Allows to start the game without a connect token
+# WARNING: Only use for testing
 extends Control
 
 @onready var ip_address_edit: LineEdit = $IPAddressEdit

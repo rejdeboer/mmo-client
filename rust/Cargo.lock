@@ -283,6 +283,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a846cbc04412cf509efcd8f3694b114fc700a035fb5a37f21517f9fb019f1ebc"
 
 [[package]]
+name = "netcode"
+version = "0.1.0"
+dependencies = [
+ "godot",
+ "mmo-client",
+]
+
+[[package]]
 name = "octets"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -400,14 +408,6 @@ source = "git+https://github.com/lucaspoffo/renet#d2c5074bc232781889c26acfe68d86
 dependencies = [
  "chacha20poly1305",
  "log",
-]
-
-[[package]]
-name = "rust"
-version = "0.1.0"
-dependencies = [
- "godot",
- "mmo-client",
 ]
 
 [[package]]

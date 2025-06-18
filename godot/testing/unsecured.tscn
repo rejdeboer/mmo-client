@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://dm7rlv7308v1b"]
 
-[ext_resource type="Script" uid="uid://dtvxq4xw7kgi1" path="res://main.gd" id="1_eewff"]
+[ext_resource type="Script" uid="uid://dtvxq4xw7kgi1" path="res://testing/unsecured.gd" id="1_jghjl"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_eewff")
+script = ExtResource("1_jghjl")
 
 [node name="IPAddressEdit" type="LineEdit" parent="."]
 layout_mode = 0
