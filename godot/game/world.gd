@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var player: CharacterBody3D = $Character
+@onready var player: CharacterBody3D = $Player
 
 func initialize_world(character_data: Character) -> void:
 	print("WorldScene: Initializing with data: ", character_data)
