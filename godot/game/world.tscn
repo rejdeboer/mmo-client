@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://76lsy6jke61l"]
+[gd_scene load_steps=5 format=3 uid="uid://76lsy6jke61l"]
+
+[ext_resource type="PackedScene" uid="uid://bb5n25dsm3djp" path="res://game/player.tscn" id="1_vn0wg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdft3"]
 size = Vector3(100, 100, 100)
@@ -13,6 +15,7 @@ size = Vector2(100, 100)
 [node name="World" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_vdft3")
@@ -21,12 +24,12 @@ shape = SubResource("BoxShape3D_vdft3")
 mesh = SubResource("PlaneMesh_vn0wg")
 skeleton = NodePath("../..")
 
-[node name="Character" type="CharacterBody3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_vn0wg")]
 
-[node name="CharacterMesh" type="MeshInstance3D" parent="Character"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
-
-[node name="CameraRig" type="Node3D" parent="."]
+[node name="CameraRig" type="Marker3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00172789, 0.999999, 0, -0.999999, 0.00172789, 0, 1.26357, 0)
+shadow_enabled = true
