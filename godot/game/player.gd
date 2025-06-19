@@ -27,6 +27,9 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
+		%Character/AnimationPlayer.current_animation = "run"
+	else:
+		%Character/AnimationPlayer.current_animation = "idle"
 
 	# Ground Velocity
 	target_velocity.x = direction.x * speed
