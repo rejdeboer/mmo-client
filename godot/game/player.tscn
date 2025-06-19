@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb5n25dsm3djp"]
+[gd_scene load_steps=4 format=3 uid="uid://bb5n25dsm3djp"]
 
 [ext_resource type="PackedScene" uid="uid://c4do020mjxx7i" path="res://assets/models/mannequin.glb" id="1_dadds"]
+[ext_resource type="Script" uid="uid://1jofxio8bpf5" path="res://game/player.gd" id="1_w5y0b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w5y0b"]
 radius = 0.907433
 
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_w5y0b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9609, 0)
