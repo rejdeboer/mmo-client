@@ -35,19 +35,3 @@ offset_top = 94.0
 offset_right = 222.0
 offset_bottom = 117.0
 text = "Status: Disconnected"
-
-[node name="SendButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 201.0
-offset_right = 296.0
-offset_bottom = 273.0
-text = "Send"
-
-[node name="MessageEdit" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 271.0
-offset_top = 28.0
-offset_right = 339.562
-offset_bottom = 59.0
-placeholder_text = "Message"
