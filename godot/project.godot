@@ -17,7 +17,7 @@ config/icon="res://assets/images/icon.svg"
 
 [autoload]
 
-NetworkManager="*res://globals/network_manager.tscn"
+NetworkManager="res://globals/network_manager.tscn"
 ConfigManager="*res://globals/config_manager.tscn"
 PlayerSession="*res://globals/player_session.tscn"
 GameManager="*res://globals/game_manager.gd"

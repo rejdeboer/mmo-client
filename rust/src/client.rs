@@ -34,14 +34,14 @@ impl From<mmo_client::Character> for Character {
 
 #[derive(GodotClass)]
 #[class(base=Object, init)]
-pub struct NetworkManagerSingleton {
+pub struct NetworkManager {
     client: GameClient,
 
     base: Base<Object>,
 }
 
 #[godot_api]
-impl NetworkManagerSingleton {
+impl NetworkManager {
     #[signal]
     fn connection_success();
 
