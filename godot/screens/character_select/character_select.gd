@@ -12,6 +12,9 @@ var selected_character_data: Dictionary
 func _ready() -> void:
 	fetch_character_list()
 
+func _process(delta: float) -> void:
+	NetworkManager.poll_connection(delta)
+
 func fetch_character_list() -> void:
 	status_label.text = "Loading characters..."
 	play_button.disabled = true

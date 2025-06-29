@@ -1,9 +1,7 @@
 use std::time::Duration;
 
-use godot::classes::ConfigFile;
-use godot::global::Error;
 use godot::prelude::*;
-use mmo_client::{ClientEvent, GameClient, decode_token};
+use mmo_client::{ConnectionEvent, GameClient, decode_token};
 
 #[derive(GodotClass, Debug, Clone)]
 #[class(base=RefCounted, init)]
@@ -35,29 +33,11 @@ impl From<mmo_client::Character> for Character {
 // }
 
 #[derive(GodotClass)]
-#[class(base=Node, init)]
+#[class(base=Object, init)]
 pub struct NetworkManagerSingleton {
     client: GameClient,
 
-    base: Base<Node>,
-}
-
-#[godot_api]
-impl INode for NetworkManagerSingleton {
-    fn process(&mut self, dt: f64) {
-        let events = self.client.update(Duration::from_secs_f64(dt));
-        for event in events {
-            godot_print!("received {:?} event", event);
-            match event {
-                ClientEvent::Connected => self.signals().connection_success().emit(),
-                ClientEvent::EnterGameSuccess { character } => self
-                    .signals()
-                    .enter_game_success()
-                    .emit(&Gd::from_object(character.into())),
-                _ => (),
-            }
-        }
-    }
+    base: Base<Object>,
 }
 
 #[godot_api]
@@ -73,6 +53,22 @@ impl NetworkManagerSingleton {
         godot_print!("securely connecting to server");
         let token = decode_token(encoded_token).expect("token decoded");
         self.client.connect(token);
+    }
+
+    #[func]
+    fn poll_connection(&mut self, dt: f64) {
+        let event_option = self.client.poll_connection(Duration::from_secs_f64(dt));
+        if let Some(event) = event_option {
+            godot_print!("received {:?} event", event);
+            match event {
+                ConnectionEvent::Connected => self.signals().connection_success().emit(),
+                ConnectionEvent::EnterGameSuccess { character } => self
+                    .signals()
+                    .enter_game_success()
+                    .emit(&Gd::from_object(character.into())),
+                _ => (),
+            }
+        }
     }
 
     #[func]
