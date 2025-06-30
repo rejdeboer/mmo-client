@@ -1,5 +1,5 @@
 use godot::prelude::*;
-use mmo_client::Vec3;
+use mmo_client::{PlayerAction, Vec3};
 use std::io::{Cursor, ErrorKind, Read};
 
 #[derive(Debug)]
@@ -18,10 +18,6 @@ impl ActionType {
         };
         Ok(action_type)
     }
-}
-
-pub enum PlayerAction {
-    Move(Vec3, f32),
 }
 
 pub fn read_action_batch(batch: PackedByteArray) -> Vec<PlayerAction> {
