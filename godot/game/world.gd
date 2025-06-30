@@ -7,8 +7,8 @@ const SECONDS_PER_TICK = 1.0 / TICK_RATE
 
 var accumulator = 0.0
 
-enum PlayerAction {
-	MOVE = 0,
+enum PlayerActionType {
+	MOVE = 1,
 }
 
 func initialize_world(character_data: Character) -> void:
@@ -36,7 +36,7 @@ func run_network_tick(delta):
 		player.is_transform_dirty = false
 		var pos = player.position
 		var yaw = player.rotation.y
-		buffer.put_8(PlayerAction.MOVE)
+		buffer.put_8(PlayerActionType.MOVE)
 		buffer.put_float(pos.x)
 		buffer.put_float(pos.y)
 		buffer.put_float(pos.z)

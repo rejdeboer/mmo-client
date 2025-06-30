@@ -3,6 +3,8 @@ use std::time::Duration;
 use godot::prelude::*;
 use mmo_client::{ConnectionEvent, GameClient, decode_token};
 
+use crate::action::read_action_batch;
+
 #[derive(GodotClass, Debug, Clone)]
 #[class(base=RefCounted, init)]
 pub struct Character {
@@ -72,7 +74,9 @@ impl NetworkManager {
     }
 
     #[func]
-    pub fn sync(&mut self, actions: PackedByteArray, dt: f64) {}
+    pub fn sync(&mut self, action_bytes: PackedByteArray, dt: f64) {
+        let actions = read_action_batch(action_bytes);
+    }
 
     #[func]
     /// Should only be used for local testing
