@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var _camera_pivot := %CameraPivot as Node3D
 
 var target_velocity = Vector3.ZERO
+var is_transform_dirty = false
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
@@ -28,6 +29,7 @@ func _physics_process(delta):
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
 		%Character/AnimationPlayer.current_animation = "run"
+		is_transform_dirty = true
 	else:
 		%Character/AnimationPlayer.current_animation = "idle"
 

@@ -56,7 +56,7 @@ impl NetworkManager {
     }
 
     #[func]
-    fn poll_connection(&mut self, dt: f64) {
+    pub fn poll_connection(&mut self, dt: f64) {
         let event_option = self.client.poll_connection(Duration::from_secs_f64(dt));
         if let Some(event) = event_option {
             godot_print!("received {:?} event", event);
@@ -70,6 +70,9 @@ impl NetworkManager {
             }
         }
     }
+
+    #[func]
+    pub fn sync(&mut self, actions: PackedByteArray, dt: f64) {}
 
     #[func]
     /// Should only be used for local testing

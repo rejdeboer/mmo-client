@@ -2,6 +2,15 @@ extends Node3D
 
 @onready var player: CharacterBody3D = $Player
 
+const TICK_RATE = 20.0
+const SECONDS_PER_TICK = 1.0 / TICK_RATE
+
+var accumulator = 0.0
+
+enum PlayerAction {
+	MOVE = 0,
+}
+
 func initialize_world(character_data: Character) -> void:
 	print("WorldScene: Initializing with data: ", character_data)
 	
@@ -13,3 +22,24 @@ func initialize_world(character_data: Character) -> void:
 	# 	
 	# 	# You could also set up the camera, UI elements, etc.
 	# 	$HUD/LevelLabel.text = "Lv. " + str(player.level)
+
+func _process(delta):
+	accumulator += delta
+	while accumulator >= SECONDS_PER_TICK:
+		accumulator -= SECONDS_PER_TICK
+		run_network_tick(delta)
+
+func run_network_tick(delta):
+	var buffer = StreamPeerBuffer.new()
+
+	if player.is_transform_dirty:
+		player.is_transform_dirty = false
+		var pos = player.position
+		var yaw = player.rotation.y
+		buffer.put_8(PlayerAction.MOVE)
+		buffer.put_float(pos.x)
+		buffer.put_float(pos.y)
+		buffer.put_float(pos.z)
+		buffer.put_float(yaw)
+
+	NetworkManager.sync(buffer.data_array, delta)
