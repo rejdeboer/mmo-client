@@ -1,5 +1,6 @@
 mod action;
 mod client;
+mod event;
 
 use godot::classes::Engine;
 use godot::prelude::*;

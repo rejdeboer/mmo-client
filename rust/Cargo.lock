@@ -154,7 +154,7 @@ checksum = "50a99dbe56b72736564cfa4b85bf9a33079f16ae8b74983ab06af3b1a3696b11"
 [[package]]
 name = "godot"
 version = "0.3.1"
-source = "git+https://github.com/godot-rust/gdext?branch=master#18d8a2200cb0bb85b587336ba853db3bb54c9ffa"
+source = "git+https://github.com/godot-rust/gdext?branch=master#17f30e7e2544bcc821a2a4b2c8ca60d0dbe0bc8c"
 dependencies = [
  "godot-core",
  "godot-macros",
@@ -163,7 +163,7 @@ dependencies = [
 [[package]]
 name = "godot-bindings"
 version = "0.3.1"
-source = "git+https://github.com/godot-rust/gdext?branch=master#18d8a2200cb0bb85b587336ba853db3bb54c9ffa"
+source = "git+https://github.com/godot-rust/gdext?branch=master#17f30e7e2544bcc821a2a4b2c8ca60d0dbe0bc8c"
 dependencies = [
  "gdextension-api",
 ]
@@ -171,12 +171,12 @@ dependencies = [
 [[package]]
 name = "godot-cell"
 version = "0.3.1"
-source = "git+https://github.com/godot-rust/gdext?branch=master#18d8a2200cb0bb85b587336ba853db3bb54c9ffa"
+source = "git+https://github.com/godot-rust/gdext?branch=master#17f30e7e2544bcc821a2a4b2c8ca60d0dbe0bc8c"
 
 [[package]]
 name = "godot-codegen"
 version = "0.3.1"
-source = "git+https://github.com/godot-rust/gdext?branch=master#18d8a2200cb0bb85b587336ba853db3bb54c9ffa"
+source = "git+https://github.com/godot-rust/gdext?branch=master#17f30e7e2544bcc821a2a4b2c8ca60d0dbe0bc8c"
 dependencies = [
  "godot-bindings",
  "heck",
@@ -189,7 +189,7 @@ dependencies = [
 [[package]]
 name = "godot-core"
 version = "0.3.1"
-source = "git+https://github.com/godot-rust/gdext?branch=master#18d8a2200cb0bb85b587336ba853db3bb54c9ffa"
+source = "git+https://github.com/godot-rust/gdext?branch=master#17f30e7e2544bcc821a2a4b2c8ca60d0dbe0bc8c"
 dependencies = [
  "glam",
  "godot-bindings",
@@ -201,7 +201,7 @@ dependencies = [
 [[package]]
 name = "godot-ffi"
 version = "0.3.1"
-source = "git+https://github.com/godot-rust/gdext?branch=master#18d8a2200cb0bb85b587336ba853db3bb54c9ffa"
+source = "git+https://github.com/godot-rust/gdext?branch=master#17f30e7e2544bcc821a2a4b2c8ca60d0dbe0bc8c"
 dependencies = [
  "godot-bindings",
  "godot-codegen",
@@ -212,7 +212,7 @@ dependencies = [
 [[package]]
 name = "godot-macros"
 version = "0.3.1"
-source = "git+https://github.com/godot-rust/gdext?branch=master#18d8a2200cb0bb85b587336ba853db3bb54c9ffa"
+source = "git+https://github.com/godot-rust/gdext?branch=master#17f30e7e2544bcc821a2a4b2c8ca60d0dbe0bc8c"
 dependencies = [
  "godot-bindings",
  "proc-macro2",
@@ -256,7 +256,7 @@ checksum = "32a282da65faaf38286cf3be983213fcf1d2e2a58700e808f83f4ea9a4804bc0"
 [[package]]
 name = "mmo-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#f2451c6e3426b28eeea6df2fe21d9bd9a0125bb5"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#67ff96089d76180434b70994f5fecb14a534dff7"
 dependencies = [
  "base64",
  "flatbuffers",
@@ -421,7 +421,7 @@ dependencies = [
 [[package]]
 name = "schemas"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#f2451c6e3426b28eeea6df2fe21d9bd9a0125bb5"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#67ff96089d76180434b70994f5fecb14a534dff7"
 dependencies = [
  "flatbuffers",
  "flatc-rust",

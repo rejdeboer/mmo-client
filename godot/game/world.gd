@@ -5,21 +5,26 @@ extends Node3D
 const TICK_RATE = 20.0
 const SECONDS_PER_TICK = 1.0 / TICK_RATE
 
+var player_entity_id: int
 var accumulator = 0.0
 
 enum PlayerActionType {
 	MOVE = 1,
 }
 
+enum ServerEventType {
+	ENTITY_MOVE = 1,
+}
+
 func initialize_world(character_data: Character) -> void:
 	print("WorldScene: Initializing with data: ", character_data)
 	
-	# TODO: Initialize player
-	# if player and character_data:
-	# 	player.position.x = character_data.
-	# 	player.level = character_data.get("level", 1)
-	# 	player.character_name = character_data.get("character_name", "Player")
-	# 	
+	if player and character_data:
+		player_entity_id = character_data.entity_id
+		player.transform = character_data.transform
+		player.level = character_data.level
+		player.character_name = character_data.name
+		
 	# 	# You could also set up the camera, UI elements, etc.
 	# 	$HUD/LevelLabel.text = "Lv. " + str(player.level)
 
@@ -33,7 +38,7 @@ func run_network_tick(delta):
 	var buffer = StreamPeerBuffer.new()
 
 	if player.is_transform_dirty:
-		player.is_transform_dirty = false
+		player.is_tranform_dirty = false
 		var pos = player.position
 		var yaw = player.rotation.y
 		buffer.put_8(PlayerActionType.MOVE)
@@ -42,4 +47,9 @@ func run_network_tick(delta):
 		buffer.put_float(pos.z)
 		buffer.put_float(yaw)
 
-	NetworkManager.sync(buffer.data_array, delta)
+	var events = NetworkManager.sync(buffer.data_array, delta)
+	handle_server_events(events)
+
+func handle_server_events(events: Dictionary):
+	for event in events:
+		pass

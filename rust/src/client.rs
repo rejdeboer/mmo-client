@@ -1,9 +1,10 @@
 use std::time::Duration;
 
 use godot::prelude::*;
-use mmo_client::{ConnectionEvent, GameClient, decode_token};
+use mmo_client::{ConnectionEvent, GameClient, GameEvent, decode_token};
 
 use crate::action::read_action_batch;
+use crate::event::encode_game_event;
 
 #[derive(GodotClass, Debug, Clone)]
 #[class(base=RefCounted, init)]
@@ -14,8 +15,8 @@ pub struct Character {
     pub hp: i32,
     #[var]
     pub level: i32,
-    // #[var]
-    // pub transform: Transform3D,
+    #[var]
+    pub transform: Transform3D,
 }
 
 impl From<mmo_client::Character> for Character {
@@ -24,15 +25,19 @@ impl From<mmo_client::Character> for Character {
             name: GString::from(character.name),
             hp: character.hp,
             level: character.level,
+            transform: convert_transform(character.transform),
         }
     }
 }
 
-// impl From<mmo_client::Transform> for Transform3D {
-//     fn from(transform: mmo_client::Transform) -> Self {
-//         Transform3D::new(basis, origin) { basis: , origin: () }
-//     }
-// }
+pub fn convert_transform(transform: mmo_client::Transform) -> Transform3D {
+    let pos = Vector3::new(
+        transform.position.x,
+        transform.position.y,
+        transform.position.z,
+    );
+    Transform3D::new(Basis::default(), pos).rotated(Vector3::new(0., 1., 0.), transform.yaw)
+}
 
 #[derive(GodotClass)]
 #[class(base=Object, init)]
@@ -74,12 +79,12 @@ impl NetworkManager {
     }
 
     #[func]
-    pub fn sync(&mut self, action_bytes: PackedByteArray, dt: f64) {
+    pub fn sync(&mut self, action_bytes: PackedByteArray, dt: f64) -> Array<Dictionary> {
         let actions = read_action_batch(action_bytes);
         self.client.send_actions(actions);
 
         let server_events = self.client.update_game(Duration::from_secs_f64(dt));
-        // TODO: Handle server events
+        Array::from_iter(server_events.into_iter().map(encode_game_event))
     }
 
     #[func]
