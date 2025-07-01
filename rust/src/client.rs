@@ -84,9 +84,12 @@ impl NetworkManager {
     #[func]
     pub fn sync(&mut self, action_bytes: PackedByteArray, dt: f64) -> Array<Dictionary> {
         let actions = read_action_batch(action_bytes);
-        self.client.send_actions(actions);
+        if !actions.is_empty() {
+            self.client.send_actions(actions);
+        }
 
         let server_events = self.client.update_game(Duration::from_secs_f64(dt));
+        godot_print!("EVENTS: {:?}", server_events);
         Array::from_iter(server_events.into_iter().map(encode_game_event))
     }
 

@@ -24,7 +24,6 @@ pub fn read_action_batch(batch: PackedByteArray) -> Vec<PlayerAction> {
     let bytes = batch.to_vec();
     let mut cursor = Cursor::new(&bytes[..]);
     let mut actions: Vec<PlayerAction> = Vec::new();
-    godot_print!("BUF: {:?}", bytes);
 
     while (cursor.position() as usize) < bytes.len() {
         match parse_action(&mut cursor) {
@@ -40,7 +39,7 @@ pub fn read_action_batch(batch: PackedByteArray) -> Vec<PlayerAction> {
 }
 
 fn parse_action(cursor: &mut Cursor<&[u8]>) -> Result<PlayerAction, std::io::Error> {
-    let mut type_buf = [0u8, 1];
+    let mut type_buf = [0u8; 1];
     cursor.read_exact(&mut type_buf)?;
     match ActionType::from_u8(type_buf[0])? {
         ActionType::Move => {
