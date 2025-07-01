@@ -24,6 +24,7 @@ pub fn read_action_batch(batch: PackedByteArray) -> Vec<PlayerAction> {
     let bytes = batch.to_vec();
     let mut cursor = Cursor::new(&bytes[..]);
     let mut actions: Vec<PlayerAction> = Vec::new();
+    godot_print!("BUF: {:?}", bytes);
 
     while (cursor.position() as usize) < bytes.len() {
         match parse_action(&mut cursor) {

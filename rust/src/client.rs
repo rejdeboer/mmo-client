@@ -1,7 +1,7 @@
 use std::time::Duration;
 
 use godot::prelude::*;
-use mmo_client::{ConnectionEvent, GameClient, GameEvent, decode_token};
+use mmo_client::{ConnectionEvent, GameClient, decode_token};
 
 use crate::action::read_action_batch;
 use crate::event::encode_game_event;
@@ -9,6 +9,8 @@ use crate::event::encode_game_event;
 #[derive(GodotClass, Debug, Clone)]
 #[class(base=RefCounted, init)]
 pub struct Character {
+    #[var]
+    pub entity_id: i64,
     #[var]
     pub name: GString,
     #[var]
@@ -22,6 +24,7 @@ pub struct Character {
 impl From<mmo_client::Character> for Character {
     fn from(character: mmo_client::Character) -> Self {
         Self {
+            entity_id: character.entity_id as i64,
             name: GString::from(character.name),
             hp: character.hp,
             level: character.level,

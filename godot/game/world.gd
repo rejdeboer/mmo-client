@@ -22,8 +22,8 @@ func initialize_world(character_data: Character) -> void:
 	if player and character_data:
 		player_entity_id = character_data.entity_id
 		player.transform = character_data.transform
-		player.level = character_data.level
-		player.character_name = character_data.name
+		# player.level = character_data.level
+		# player.character_name = character_data.name
 		
 	# 	# You could also set up the camera, UI elements, etc.
 	# 	$HUD/LevelLabel.text = "Lv. " + str(player.level)
@@ -38,18 +38,24 @@ func run_network_tick(delta):
 	var buffer = StreamPeerBuffer.new()
 
 	if player.is_transform_dirty:
-		player.is_tranform_dirty = false
+		player.is_transform_dirty = false
 		var pos = player.position
-		var yaw = player.rotation.y
 		buffer.put_8(PlayerActionType.MOVE)
 		buffer.put_float(pos.x)
 		buffer.put_float(pos.y)
 		buffer.put_float(pos.z)
-		buffer.put_float(yaw)
+		buffer.put_float(player.rotation.y)
 
 	var events = NetworkManager.sync(buffer.data_array, delta)
 	handle_server_events(events)
 
-func handle_server_events(events: Dictionary):
+func handle_server_events(events: Array[Dictionary]):
 	for event in events:
-		pass
+		match event["type"]:
+			ServerEventType.ENTITY_MOVE:
+				var entity_id = event["entity_id"]
+				if player_entity_id == entity_id:
+					# TODO: Proper interpolation
+					player.transform = event["transform"]
+				else:
+					pass
