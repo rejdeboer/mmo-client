@@ -33,6 +33,9 @@ func initialize_world(character_data: Character) -> void:
 	# 	# You could also set up the camera, UI elements, etc.
 	# 	$HUD/LevelLabel.text = "Lv. " + str(player.level)
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 func _process(delta):
 	accumulator += delta
 	while accumulator >= SECONDS_PER_TICK:
@@ -61,7 +64,8 @@ func handle_server_events(events: Array[Dictionary]):
 				var entity_id = event["entity_id"]
 				if player_entity_id == entity_id:
 					# TODO: Proper interpolation
-					player.transform = event["transform"]
+					#player.transform = event["transform"]
+					pass
 				elif entities.has(entity_id):
 					entities[entity_id].target_transform = event["transform"]
 				else:

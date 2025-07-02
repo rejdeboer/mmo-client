@@ -1,9 +1,8 @@
 extends CharacterBody3D
 
-# How fast the player moves in meters per second.
-@export var speed = 14
-# The downward acceleration when in the air, in meters per second squared.
+@export var movement_speed = 7.5
 @export var fall_acceleration = 75
+@export var turn_speed_radians = 1.0
 
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.01
 @export var tilt_limit = deg_to_rad(75)
@@ -11,42 +10,70 @@ extends CharacterBody3D
 @onready var _camera := %Camera3D as Camera3D
 @onready var _camera_pivot := %CameraPivot as Node3D
 
-var target_velocity = Vector3.ZERO
+var is_left_mouse_down = false
+var is_right_mouse_down = false
+
 var is_transform_dirty = false
 
 func _physics_process(delta):
-	var direction = Vector3.ZERO
+	var turn_input = Input.get_axis("turn_right", "turn_left")
+	if turn_input != 0:
+		is_transform_dirty = true
+		self.rotate_y(turn_input * turn_speed_radians * delta)
+	
+	var horizontal_velocity = Vector3.ZERO
 	if Input.is_action_pressed("move_right"):
-		direction.x += 1
+		horizontal_velocity += transform.basis.x
 	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
+		horizontal_velocity -= transform.basis.x
 	if Input.is_action_pressed("move_back"):
-		direction.z += 1
+		horizontal_velocity += transform.basis.z
 	if Input.is_action_pressed("move_forward"):
-		direction.z -= 1
+		horizontal_velocity -= transform.basis.z
 		
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-		$Pivot.basis = Basis.looking_at(direction)
+	if horizontal_velocity != Vector3.ZERO:
+		horizontal_velocity = horizontal_velocity.normalized()
 		%Character/AnimationPlayer.current_animation = "run"
 		is_transform_dirty = true
 	else:
 		%Character/AnimationPlayer.current_animation = "idle"
 
-	# Ground Velocity
-	target_velocity.x = direction.x * speed
-	target_velocity.z = direction.z * speed
-
-	# Vertical Velocity
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+		velocity.y -= fall_acceleration * delta
 
-	velocity = target_velocity
+	velocity.x = horizontal_velocity.x
+	velocity.z = horizontal_velocity.z
+	velocity *= movement_speed
 	move_and_slide()
-
+	
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
-		# Prevent the camera from rotating too far up or down.
-		_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, -tilt_limit, tilt_limit)
-		_camera_pivot.rotation.y += -event.relative.x * mouse_sensitivity
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.is_pressed():
+				is_left_mouse_down = true
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+			else:
+				is_left_mouse_down = false
+				if not is_right_mouse_down:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.is_pressed():
+				is_right_mouse_down = true
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+			else:
+				is_right_mouse_down = false
+				if not is_left_mouse_down:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if is_left_mouse_down or is_right_mouse_down:
+			_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
+			# Prevent the camera from rotating too far up or down.
+			_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, -tilt_limit, tilt_limit)
+
+			if is_right_mouse_down:
+				self.rotate_y(-event.relative.x * mouse_sensitivity)
+				is_transform_dirty = true
+			else:
+				_camera_pivot.rotation.y += -event.relative.x * mouse_sensitivity
