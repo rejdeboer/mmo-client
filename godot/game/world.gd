@@ -63,7 +63,7 @@ func handle_server_events(events: Array[Dictionary]):
 					# TODO: Proper interpolation
 					player.transform = event["transform"]
 				elif entities.has(entity_id):
-					entities[entity_id].transform = event["transform"]
+					entities[entity_id].target_transform = event["transform"]
 				else:
 					push_warning("movement event refers to unknown entity")
 			ServerEventType.ENTITY_SPAWN:
