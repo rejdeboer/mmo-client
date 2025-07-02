@@ -89,7 +89,6 @@ impl NetworkManager {
         }
 
         let server_events = self.client.update_game(Duration::from_secs_f64(dt));
-        godot_print!("EVENTS: {:?}", server_events);
         Array::from_iter(server_events.into_iter().map(encode_game_event))
     }
 

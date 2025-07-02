@@ -31,5 +31,5 @@ skeleton = NodePath("../..")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.00172789, 0.999999, 0, -0.999999, 0.00172789, 0, 1.26357, 0)
+transform = Transform3D(1, 0, 0, 0, 0.00172789, 0.999999, 0, -0.999999, 0.00172789, 0, 5.67259, 0)
 shadow_enabled = true

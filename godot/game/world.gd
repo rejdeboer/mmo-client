@@ -67,11 +67,13 @@ func handle_server_events(events: Array[Dictionary]):
 				else:
 					push_warning("movement event refers to unknown entity")
 			ServerEventType.ENTITY_SPAWN:
-				var entity_instance = EntityScene.instance()
+				print("spawning entity")
+				var entity_instance = EntityScene.instantiate()
 				entity_instance.transform = event["transform"]
 				entities[event["entity_id"]] = entity_instance
 				add_child(entity_instance)
 			ServerEventType.ENTITY_DESPAWN:
+				print("despawning entity")
 				var entity_id = event["entity_id"]
 				if entities.has(entity_id):
 					var entity_node = entities[entity_id]
