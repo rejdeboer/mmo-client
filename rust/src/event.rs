@@ -18,8 +18,11 @@ pub fn encode_game_event(event: GameEvent) -> Dictionary {
         } => {
             dict! {"type": ServerEventType::EntityMove as u8, "entity_id": entity_id, "transform": convert_transform(transform)}
         }
-        GameEvent::SpawnEntity { entity_id } => {
-            dict! {"type": ServerEventType::EntitySpawn as u8, "entity_id": entity_id }
+        GameEvent::SpawnEntity {
+            entity_id,
+            transform,
+        } => {
+            dict! {"type": ServerEventType::EntitySpawn as u8, "entity_id": entity_id, "transform": convert_transform(transform)}
         }
         GameEvent::DespawnEntity { entity_id } => {
             dict! {"type": ServerEventType::EntityDespawn as u8, "entity_id": entity_id }
