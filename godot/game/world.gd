@@ -2,11 +2,14 @@ extends Node3D
 
 @onready var player: CharacterBody3D = $Player
 
+var EntityScene = preload("res://game/entity.tscn")
+
 const TICK_RATE = 20.0
 const SECONDS_PER_TICK = 1.0 / TICK_RATE
 
 var player_entity_id: int
 var accumulator = 0.0
+var entities = {}
 
 enum PlayerActionType {
 	MOVE = 1,
@@ -14,6 +17,8 @@ enum PlayerActionType {
 
 enum ServerEventType {
 	ENTITY_MOVE = 1,
+	ENTITY_SPAWN = 2,
+	ENTITY_DESPAWN = 3,
 }
 
 func initialize_world(character_data: Character) -> void:
@@ -57,5 +62,21 @@ func handle_server_events(events: Array[Dictionary]):
 				if player_entity_id == entity_id:
 					# TODO: Proper interpolation
 					player.transform = event["transform"]
+				elif entities.has(entity_id):
+					entities[entity_id].transform = event["transform"]
 				else:
-					pass
+					push_warning("movement event refers to unknown entity")
+			ServerEventType.ENTITY_SPAWN:
+				var entity_instance = EntityScene.instance()
+				entity_instance.transform = event["transform"]
+				entities[event["entity_id"]] = entity_instance
+				add_child(entity_instance)
+			ServerEventType.ENTITY_DESPAWN:
+				var entity_id = event["entity_id"]
+				if entities.has(entity_id):
+					var entity_node = entities[entity_id]
+					if is_instance_valid(entity_node):
+						entity_node.queue_free()
+					entities.erase(entity_id)
+				else:
+					push_warning("tried to despawn entity but it was already gone")
