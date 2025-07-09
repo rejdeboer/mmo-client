@@ -18,3 +18,6 @@ func _ready() -> void:
 	var character_id = OS.get_cmdline_args().get(3)
 
 	NetworkManager.connect_unsecure(ip, port, int(character_id))
+
+func _process(delta: float) -> void:
+	NetworkManager.poll_connection(delta)
