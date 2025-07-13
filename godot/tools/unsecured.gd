@@ -8,8 +8,8 @@
 extends Control
 
 func _ready() -> void:
-	var ip: String = ConfigManager.game_server.host
-	var port: int = ConfigManager.game_server.port
+	var ip: String = "127.0.0.1"
+	var port: int = 8000
 
 	if ip.is_empty() or port <= 0 or port > 65535:
 		printerr("Invalid IP or Port.")
