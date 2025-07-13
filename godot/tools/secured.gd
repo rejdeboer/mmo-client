@@ -31,7 +31,7 @@ func _ready() -> void:
 
 func _on_http_request_completed(result, response_code, headers, body):
 	if response_code >= 400:
-		printerr("received error from server; STEP: " + current_step + "; STATUS: " + response_code)
+		printerr("received error from server; STEP: %d; STATUS: %d" % [current_step, response_code])
 		return;
 		
 	var response = JSON.parse_string(body.get_string_from_utf8())

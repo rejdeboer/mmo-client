@@ -17,3 +17,4 @@ shape = SubResource("SphereShape3D_w5y0b")
 
 [node name="Character" parent="Pivot" instance=ExtResource("2_yqfaw")]
 unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
