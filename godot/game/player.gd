@@ -33,10 +33,10 @@ func _physics_process(delta):
 		
 	if horizontal_velocity != Vector3.ZERO:
 		horizontal_velocity = horizontal_velocity.normalized()
-		%Character/AnimationPlayer.current_animation = "run"
+		# %Character/AnimationPlayer.current_animation = "run"
 		is_transform_dirty = true
-	else:
-		%Character/AnimationPlayer.current_animation = "idle"
+	# else:
+		# %Character/AnimationPlayer.current_animation = "idle"
 
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		velocity.y -= fall_acceleration * delta
