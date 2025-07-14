@@ -24,7 +24,7 @@ GameManager="*res://globals/game_manager.gd"
 
 [editor]
 
-run/main_run_args="user1@test.com Test123! 0"
+run/main_run_args="user0@test.com Test123! 1"
 
 [input]
 
