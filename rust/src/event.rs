@@ -8,6 +8,7 @@ enum ServerEventType {
     EntityMove = 1,
     EntitySpawn = 2,
     EntityDespawn = 3,
+    Chat = 4,
 }
 
 pub fn encode_game_event(event: GameEvent) -> Dictionary {
@@ -17,7 +18,12 @@ pub fn encode_game_event(event: GameEvent) -> Dictionary {
             author_name,
             text,
         } => {
-            todo!();
+            dict! {
+                "type": ServerEventType::Chat as u8,
+                "channel": channel.0,
+                "author_name": author_name,
+                "text": text,
+            }
         }
         GameEvent::MoveEntity {
             entity_id,
