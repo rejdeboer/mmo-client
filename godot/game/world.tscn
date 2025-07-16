@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwbc63xo2r7ew" path="res://game/world.gd" id="1_aseec"]
 [ext_resource type="PackedScene" uid="uid://bb5n25dsm3djp" path="res://game/player.tscn" id="1_vn0wg"]
-[ext_resource type="Script" uid="uid://bwo0df76wcus3" path="res://ui/chat.gd" id="3_tvmmn"]
+[ext_resource type="PackedScene" uid="uid://cpjye5voq2x4e" path="res://ui/chat.tscn" id="3_tvmmn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdft3"]
 size = Vector3(100, 2, 100)
@@ -35,20 +35,13 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 0.00172789, 0.999999, 0, -0.999999, 0.00172789, 0, 5.67259, 0)
 shadow_enabled = true
 
-[node name="Chat" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_tvmmn")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Chat"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Display" type="RichTextLabel" parent="Chat/VBoxContainer"]
-layout_mode = 2
-
-[node name="ChatInput" type="LineEdit" parent="Chat/VBoxContainer"]
-layout_mode = 2
+[node name="Chat" parent="." instance=ExtResource("3_tvmmn")]
+custom_minimum_size = Vector2(0, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -273.0
+offset_right = 425.0
+offset_bottom = -23.0
+grow_vertical = 0

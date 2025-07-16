@@ -1,7 +1,7 @@
 extends Control
 
-@onready var chat_display = $VBoxContainer/Display
-@onready var message_input = $VBoxContainer/ChatInput
+@onready var chat_display = $Panel/VBoxContainer/Display
+@onready var message_input = $Panel/VBoxContainer/ChatInput
 
 func _ready():
 	message_input.text_submitted.connect(_on_text_submitted)

@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpjye5voq2x4e"]
+
+[ext_resource type="Script" uid="uid://bwo0df76wcus3" path="res://ui/chat.gd" id="1_tml8l"]
+
+[node name="Chat" type="Control"]
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 250.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_tml8l")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="Display" type="RichTextLabel" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+fit_content = true
+vertical_alignment = 2
+
+[node name="ChatInput" type="LineEdit" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 3
