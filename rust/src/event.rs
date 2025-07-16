@@ -12,6 +12,13 @@ enum ServerEventType {
 
 pub fn encode_game_event(event: GameEvent) -> Dictionary {
     match event {
+        GameEvent::Chat {
+            channel,
+            author_name,
+            text,
+        } => {
+            todo!();
+        }
         GameEvent::MoveEntity {
             entity_id,
             transform,
