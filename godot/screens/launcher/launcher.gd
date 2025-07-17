@@ -116,10 +116,10 @@ func _on_http_request_completed(result: int, response_code: int, headers: Packed
 
 
 func handle_success(response: Dictionary) -> void:
-	if response.has("token"):
-		print("Login successful! JWT: ", response["token"])
+	if response.has("jwt"):
+		print("Login successful! JWT: ", response["jwt"])
 		login_status_label.text = "Login Successful!"
-		PlayerSession.store_session(response["token"])
+		PlayerSession.store_session(response["jwt"])
 		get_tree().change_scene_to_file("res://screens/character_select/character_select.tscn")
 		
 	else: # For registration

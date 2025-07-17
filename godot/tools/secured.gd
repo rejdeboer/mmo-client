@@ -38,14 +38,14 @@ func _on_http_request_completed(result, response_code, headers, body):
 		
 	match current_step:
 		Step.LOGIN:
-			PlayerSession.store_session(response["token"])
-			var auth_headers = ["Authorization: Bearer " + response["token"]]
+			PlayerSession.store_session(response["jwt"])
+			var auth_headers = ["Authorization: Bearer " + response["jwt"]]
 			var select_character_body = {
 				"character_id": int(OS.get_cmdline_args().get(3)),
 			}
 			_make_http_request("game/request-entry", select_character_body, auth_headers)
 		Step.CHARACTER_SELECT:
-			NetworkManager.connect_to_server(response["token"])
+			NetworkManager.connect_to_server(response["connect_token"])
 	
 	current_step += 1
 

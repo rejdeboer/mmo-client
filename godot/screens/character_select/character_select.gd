@@ -40,8 +40,8 @@ func _on_http_request_completed(result: int, response_code: int, headers: Packed
 		status_label.text = "Error fetching characters (Code: %d)" % response_code
 
 func handle_request_success(response: Variant):
-	if response.has("token"):
-		NetworkManager.connect_to_server(response["token"])
+	if response.has("connect_token"):
+		NetworkManager.connect_to_server(response["connect_token"])
 		# TODO: Transition to game
 		
 	else: # For character list
