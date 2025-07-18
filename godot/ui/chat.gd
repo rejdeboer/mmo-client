@@ -4,7 +4,12 @@ extends Control
 @onready var message_input = $Panel/VBoxContainer/ChatInput
 
 enum ChannelType {
-	SAY = 1,
+	SAY = 0,
+	YELL = 1,
+	GUILD = 2,
+	PARTY = 3,
+	WHISPER = 4,
+	TRADE = 5,
 }
 
 func _ready():
