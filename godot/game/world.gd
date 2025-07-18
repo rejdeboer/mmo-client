@@ -11,10 +11,6 @@ var player_entity_id: int
 var accumulator = 0.0
 var entities = {}
 
-enum PlayerActionType {
-	MOVE = 1,
-}
-
 enum ServerEventType {
 	ENTITY_MOVE = 1,
 	ENTITY_SPAWN = 2,
@@ -48,7 +44,6 @@ func run_network_tick(delta):
 	if player.is_transform_dirty:
 		player.is_transform_dirty = false
 		var pos = player.position
-		buffer.put_8(PlayerActionType.MOVE)
 		buffer.put_float(pos.x)
 		buffer.put_float(pos.y)
 		buffer.put_float(pos.z)

@@ -1,10 +1,11 @@
+use std::collections::VecDeque;
 use std::time::Duration;
 
 use godot::prelude::*;
-use mmo_client::{ConnectionEvent, GameClient, decode_token};
+use mmo_client::{ConnectionEvent, GameClient, PlayerAction, decode_token};
 
-use crate::action::read_action_batch;
 use crate::event::encode_game_event;
+use crate::movement::read_movement_bytes;
 
 #[derive(GodotClass, Debug, Clone)]
 #[class(base=RefCounted, init)]
@@ -47,6 +48,7 @@ pub fn convert_transform(transform: mmo_client::Transform) -> Transform3D {
 #[class(base=Object, init)]
 pub struct NetworkManager {
     client: GameClient,
+    action_queue: Vec<PlayerAction>,
 
     base: Base<Object>,
 }
@@ -83,11 +85,10 @@ impl NetworkManager {
     }
 
     #[func]
-    pub fn sync(&mut self, action_bytes: PackedByteArray, dt: f64) -> Array<Dictionary> {
-        let actions = read_action_batch(action_bytes);
-        if !actions.is_empty() {
-            self.client.send_actions(actions);
-        }
+    pub fn sync(&mut self, movement_bytes: PackedByteArray, dt: f64) -> Array<Dictionary> {
+        let actions = std::mem::take(&mut self.action_queue);
+        self.client
+            .send_actions(read_movement_bytes(movement_bytes), actions);
 
         let server_events = self.client.update_game(Duration::from_secs_f64(dt));
         Array::from_iter(server_events.into_iter().map(encode_game_event))
