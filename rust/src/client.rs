@@ -1,8 +1,7 @@
-use std::collections::VecDeque;
 use std::time::Duration;
 
 use godot::prelude::*;
-use mmo_client::{ConnectionEvent, GameClient, PlayerAction, decode_token};
+use mmo_client::{ChannelType, ConnectionEvent, GameClient, PlayerAction, decode_token};
 
 use crate::event::encode_game_event;
 use crate::movement::read_movement_bytes;
@@ -92,6 +91,12 @@ impl NetworkManager {
 
         let server_events = self.client.update_game(Duration::from_secs_f64(dt));
         Array::from_iter(server_events.into_iter().map(encode_game_event))
+    }
+
+    #[func]
+    pub fn queue_chat(&mut self, channel: u8, text: String) {
+        self.action_queue
+            .push(PlayerAction::Chat(ChannelType(channel), text));
     }
 
     #[func]

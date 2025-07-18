@@ -3,6 +3,10 @@ extends Control
 @onready var chat_display = $Panel/VBoxContainer/Display
 @onready var message_input = $Panel/VBoxContainer/ChatInput
 
+enum ChannelType {
+	SAY = 1,
+}
+
 func _ready():
 	message_input.text_submitted.connect(_on_text_submitted)
 	
@@ -22,7 +26,7 @@ func send_message():
 	if text.strip_edges().is_empty():
 		return
 
-	add_message("You", text)
+	NetworkManager.queue_chat(ChannelType.SAY, message_input.text)
 
 	message_input.text = ""
 	message_input.grab_focus()
