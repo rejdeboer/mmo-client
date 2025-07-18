@@ -3,6 +3,10 @@ use mmo_client::{MoveAction, Vec3};
 use std::io::{Cursor, Read};
 
 pub fn read_movement_bytes(bytes: PackedByteArray) -> Option<MoveAction> {
+    if bytes.is_empty() {
+        return None;
+    }
+
     let bytes = bytes.to_vec();
     let mut cursor = Cursor::new(&bytes[..]);
 

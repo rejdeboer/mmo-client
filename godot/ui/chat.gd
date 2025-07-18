@@ -24,12 +24,16 @@ func _on_text_submitted(text):
 func send_message():
 	var text = message_input.text
 	if text.strip_edges().is_empty():
+		message_input.text = ""
 		return
 
 	NetworkManager.queue_chat(ChannelType.SAY, message_input.text)
 
 	message_input.text = ""
 	message_input.grab_focus()
+
+func receive_message(channel: ChannelType, author: String, text: String):
+	add_message(author, text)
 
 func add_message(username, message):
 	chat_display.append_text("[b]" + username + ":[/b] " + message + "\n")

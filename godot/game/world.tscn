@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwbc63xo2r7ew" path="res://game/world.gd" id="1_aseec"]
 [ext_resource type="PackedScene" uid="uid://bb5n25dsm3djp" path="res://game/player.tscn" id="1_vn0wg"]
-[ext_resource type="PackedScene" path="res://ui/chat.tscn" id="3_tvmmn"]
+[ext_resource type="PackedScene" uid="uid://cpjye5voq2x4e" path="res://ui/chat.tscn" id="3_tvmmn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdft3"]
 size = Vector3(100, 2, 100)

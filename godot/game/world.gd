@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var player: CharacterBody3D = $Player
+@onready var chat: Control = $Chat
 
 var EntityScene = preload("res://game/entity.tscn")
 
@@ -15,6 +16,7 @@ enum ServerEventType {
 	ENTITY_MOVE = 1,
 	ENTITY_SPAWN = 2,
 	ENTITY_DESPAWN = 3,
+	CHAT = 4,
 }
 
 func initialize_world(character_data: Character) -> void:
@@ -81,3 +83,5 @@ func handle_server_events(events: Array[Dictionary]):
 					entities.erase(entity_id)
 				else:
 					push_warning("tried to despawn entity but it was already gone")
+			ServerEventType.CHAT:
+				chat.receive_message(event["channel"], event["author_name"], event["text"])
