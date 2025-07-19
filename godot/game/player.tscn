@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb5n25dsm3djp"]
+[gd_scene load_steps=6 format=3 uid="uid://bb5n25dsm3djp"]
 
 [ext_resource type="PackedScene" uid="uid://c4do020mjxx7i" path="res://assets/models/mannequin.glb" id="1_dadds"]
 [ext_resource type="Script" uid="uid://1jofxio8bpf5" path="res://game/player.gd" id="1_w5y0b"]
@@ -6,7 +6,11 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_w5y0b"]
 radius = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5y0b"]
+albedo_color = Color(0.309804, 0.662745, 1, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_w5y0b"]
+material = SubResource("StandardMaterial3D_w5y0b")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
