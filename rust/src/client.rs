@@ -100,6 +100,11 @@ impl NetworkManager {
     }
 
     #[func]
+    pub fn queue_jump(&mut self) {
+        self.action_queue.push(PlayerAction::Jump);
+    }
+
+    #[func]
     /// Should only be used for local testing
     pub fn connect_unsecure(&mut self, host: String, port: u16, character_id: i32) {
         godot_print!(

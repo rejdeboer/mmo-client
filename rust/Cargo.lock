@@ -154,9 +154,9 @@ checksum = "50a99dbe56b72736564cfa4b85bf9a33079f16ae8b74983ab06af3b1a3696b11"
 
 [[package]]
 name = "godot"
-version = "0.3.2"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e5c4b80a6697ab47cbe03beaa519b4f40fc408ee43b853842224d5d4bdeb85ad"
+checksum = "3ebec6acf6a391ddde0b5a88156442168186506afc1847449f377dadd2867898"
 dependencies = [
  "godot-core",
  "godot-macros",
@@ -164,24 +164,24 @@ dependencies = [
 
 [[package]]
 name = "godot-bindings"
-version = "0.3.2"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e3ef8e3a3873c1c442b66da8ad939d12ab3ba2bb8c929bc9d45ae4d46047dbd4"
+checksum = "5a63b494e0ddf22b736025c74f12db932a2d5f61c7971e719c77d4d6747e3701"
 dependencies = [
  "gdextension-api",
 ]
 
 [[package]]
 name = "godot-cell"
-version = "0.3.2"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e792bd37ca9b374ab70293bf1b62c17083048938773e9fe527fa844ba411c27"
+checksum = "e5b51f54471f322ef59818ab0bd3593133be1be5a57a5af0d766e4a9804e8032"
 
 [[package]]
 name = "godot-codegen"
-version = "0.3.2"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d1af2c1cf73ea183c4d6b3344259da3de41bf76df17227fa4c3fa309eecceb0d"
+checksum = "f2fdd84b248096a91cfff4808aaefbebfab20fb10830ea8e6eea7ac6d315982d"
 dependencies = [
  "godot-bindings",
  "heck",
@@ -193,9 +193,9 @@ dependencies = [
 
 [[package]]
 name = "godot-core"
-version = "0.3.2"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "24fb24e8689e236c80ad7580f87491c90a7f5f6fba8ea6f41863993d5b2b5b8f"
+checksum = "b8f6b2b254364037a662d36c31217c1118b87d39b23aba588011bf6dc9e7cfcf"
 dependencies = [
  "glam",
  "godot-bindings",
@@ -206,9 +206,9 @@ dependencies = [
 
 [[package]]
 name = "godot-ffi"
-version = "0.3.2"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d6f6f4fbcd1be7bae4c4e781c727317e68879afa1a6e33cd412160bc17e42827"
+checksum = "5bacbdcb65b5637ec1b354e79ebbd45fe68dedc9ebc10c0a1aa996abffd55e10"
 dependencies = [
  "godot-bindings",
  "godot-codegen",
@@ -218,9 +218,9 @@ dependencies = [
 
 [[package]]
 name = "godot-macros"
-version = "0.3.2"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b32a375c5a9852de4201751dbc650a39609c8f618c0a2c156958fd9fe6148e4"
+checksum = "8f2f5944b2a418ab7987456942a7da56199131647e7e45af99adf050c28069c9"
 dependencies = [
  "godot-bindings",
  "proc-macro2",
@@ -264,7 +264,7 @@ checksum = "32a282da65faaf38286cf3be983213fcf1d2e2a58700e808f83f4ea9a4804bc0"
 [[package]]
 name = "mmo-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#513c1f2404814769af2fb9d5c861339505e6b99d"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#0ffd5c7da9a19116f56f8a9c7e029b1a14b82d65"
 dependencies = [
  "base64",
  "flatbuffers",
@@ -429,7 +429,7 @@ dependencies = [
 [[package]]
 name = "schemas"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#513c1f2404814769af2fb9d5c861339505e6b99d"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#0ffd5c7da9a19116f56f8a9c7e029b1a14b82d65"
 dependencies = [
  "flatbuffers",
  "flatc-rust",
