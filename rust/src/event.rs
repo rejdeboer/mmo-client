@@ -18,7 +18,7 @@ pub fn encode_game_event(event: GameEvent) -> Dictionary {
             sender_name,
             text,
         } => {
-            dict! {
+            vdict! {
                 "type": ServerEventType::Chat as u8,
                 "channel": channel.0,
                 "sender_name": sender_name,
@@ -29,16 +29,16 @@ pub fn encode_game_event(event: GameEvent) -> Dictionary {
             entity_id,
             transform,
         } => {
-            dict! {"type": ServerEventType::EntityMove as u8, "entity_id": entity_id, "transform": convert_transform(transform)}
+            vdict! {"type": ServerEventType::EntityMove as u8, "entity_id": entity_id, "transform": convert_transform(transform)}
         }
         GameEvent::SpawnEntity {
             entity_id,
             transform,
         } => {
-            dict! {"type": ServerEventType::EntitySpawn as u8, "entity_id": entity_id, "transform": convert_transform(transform)}
+            vdict! {"type": ServerEventType::EntitySpawn as u8, "entity_id": entity_id, "transform": convert_transform(transform)}
         }
         GameEvent::DespawnEntity { entity_id } => {
-            dict! {"type": ServerEventType::EntityDespawn as u8, "entity_id": entity_id}
+            vdict! {"type": ServerEventType::EntityDespawn as u8, "entity_id": entity_id}
         }
     }
 }
