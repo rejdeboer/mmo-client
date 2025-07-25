@@ -84,4 +84,4 @@ func handle_server_events(events: Array[Dictionary]):
 				else:
 					push_warning("tried to despawn entity but it was already gone")
 			ServerEventType.CHAT:
-				chat.receive_message(event["channel"], event["author_name"], event["text"])
+				chat.receive_message(event["channel"], event["sender_name"], event["text"])

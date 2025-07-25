@@ -15,13 +15,13 @@ pub fn encode_game_event(event: GameEvent) -> Dictionary {
     match event {
         GameEvent::Chat {
             channel,
-            author_name,
+            sender_name,
             text,
         } => {
             dict! {
                 "type": ServerEventType::Chat as u8,
                 "channel": channel.0,
-                "author_name": author_name,
+                "sender_name": sender_name,
                 "text": text,
             }
         }

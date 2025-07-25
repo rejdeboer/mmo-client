@@ -37,8 +37,8 @@ func send_message():
 	message_input.text = ""
 	message_input.grab_focus()
 
-func receive_message(channel: ChannelType, author: String, text: String):
-	add_message(author, text)
+func receive_message(channel: ChannelType, sender: String, text: String):
+	add_message(sender, text)
 
 func add_message(username, message):
 	chat_display.append_text("[b]" + username + ":[/b] " + message + "\n")
