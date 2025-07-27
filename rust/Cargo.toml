@@ -8,4 +8,5 @@ crate-type = ["cdylib"] # Compile this crate to a dynamic C library.
 
 [dependencies]
 godot = { version = "0.3.2" }
+godot_tokio = "0.3.1"
 mmo-client = { git = "ssh://git@github.com/rejdeboer/mmo-server.git", branch = "main" }
