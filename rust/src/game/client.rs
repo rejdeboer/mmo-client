@@ -3,8 +3,8 @@ use std::time::Duration;
 use godot::prelude::*;
 use mmo_client::{ChannelType, ConnectionEvent, GameClient, PlayerAction, decode_token};
 
-use crate::event::encode_game_event;
-use crate::movement::read_movement_bytes;
+use super::event::encode_game_event;
+use super::movement::read_movement_bytes;
 
 #[derive(GodotClass, Debug, Clone)]
 #[class(base=RefCounted, init)]

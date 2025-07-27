@@ -1,12 +1,10 @@
-mod client;
-mod event;
-mod movement;
+mod game;
 
 use godot::classes::Engine;
 use godot::prelude::*;
 use godot_tokio::AsyncRuntime;
 
-use crate::client::NetworkManager;
+use crate::game::NetworkManager;
 
 struct NetcodeExtension;
 

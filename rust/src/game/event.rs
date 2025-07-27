@@ -1,7 +1,7 @@
 use godot::prelude::*;
 use mmo_client::GameEvent;
 
-use crate::client::convert_transform;
+use super::client::convert_transform;
 
 #[repr(u8)]
 enum ServerEventType {
