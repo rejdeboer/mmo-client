@@ -1,4 +1,5 @@
 mod game;
+mod social;
 
 use godot::classes::Engine;
 use godot::prelude::*;
