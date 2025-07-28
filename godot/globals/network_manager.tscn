@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cpurledbjsut8"]
+[gd_scene format=3 uid="uid://darmc50hd7ego"]
 
 [node name="NetworkManager" type="Object"]
 _import_path = NodePath("")

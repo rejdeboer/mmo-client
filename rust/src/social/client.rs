@@ -17,15 +17,15 @@ pub enum ConnectionState {
 }
 
 #[derive(GodotClass)]
-#[class(base=Object, init)]
-pub struct SocialManager {
+#[class(base=Node, init)]
+pub struct SocialManagerSingleton {
     state: ConnectionState,
 
-    base: Base<Object>,
+    base: Base<Node>,
 }
 
 #[godot_api]
-impl SocialManager {
+impl SocialManagerSingleton {
     #[func]
     pub fn connect(&mut self, server_url: String, token: String) {
         let (confirm_tx, confirm_rx) = oneshot::channel::<ConnectionResult>();
@@ -39,4 +39,9 @@ impl SocialManager {
 
         self.state = ConnectionState::Connecting { confirm_rx };
     }
+}
+
+#[godot_api]
+impl INode for SocialManagerSingleton {
+    fn process(&mut self, dt: f64) {}
 }
