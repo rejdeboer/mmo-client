@@ -43,5 +43,38 @@ impl SocialManagerSingleton {
 
 #[godot_api]
 impl INode for SocialManagerSingleton {
-    fn process(&mut self, dt: f64) {}
+    fn process(&mut self, _dt: f64) {
+        match &mut self.state {
+            ConnectionState::Disconnected => (),
+            ConnectionState::Connecting { confirm_rx } => {
+                let connection_result = match confirm_rx.try_recv() {
+                    Ok(res) => res,
+                    Err(err) => match err {
+                        oneshot::error::TryRecvError::Empty => return,
+                        oneshot::error::TryRecvError::Closed => {
+                            godot_error!("oneshot channel was prematurely closed");
+                            self.state = ConnectionState::Disconnected;
+                            return;
+                        }
+                    },
+                };
+
+                match connection_result {
+                    Ok((action_tx, event_rx)) => {
+                        self.state = ConnectionState::Connected {
+                            action_tx,
+                            event_rx,
+                        };
+                    }
+                    Err(err) => {
+                        godot_error!("failed to connect to social server: {:?}", err);
+                    }
+                }
+            }
+            ConnectionState::Connected {
+                action_tx,
+                event_rx,
+            } => {}
+        }
+    }
 }
