@@ -26,6 +26,9 @@ pub struct SocialManagerSingleton {
 
 #[godot_api]
 impl SocialManagerSingleton {
+    #[signal]
+    fn chat_received(author_name: String, text: String, channel: ());
+
     #[func]
     pub fn connect(&mut self, server_url: String, token: String) {
         let (confirm_tx, confirm_rx) = oneshot::channel::<ConnectionResult>();
@@ -38,6 +41,17 @@ impl SocialManagerSingleton {
         });
 
         self.state = ConnectionState::Connecting { confirm_rx };
+    }
+
+    fn process_event(&mut self, event: SocialEvent) {
+        match event {
+            SocialEvent::Chat {
+                channel,
+                text,
+                sender_name,
+                sender_id,
+            } => {}
+        }
     }
 }
 
@@ -72,9 +86,23 @@ impl INode for SocialManagerSingleton {
                 }
             }
             ConnectionState::Connected {
-                action_tx,
+                action_tx: _,
                 event_rx,
-            } => {}
+            } => {
+                let event = match event_rx.try_recv() {
+                    Ok(event) => event,
+                    Err(err) => match err {
+                        mpsc::error::TryRecvError::Empty => return,
+                        mpsc::error::TryRecvError::Disconnected => {
+                            godot_error!("event channel was disconnected by server");
+                            self.state = ConnectionState::Disconnected;
+                            return;
+                        }
+                    },
+                };
+
+                self.process_event(event);
+            }
         }
     }
 }
