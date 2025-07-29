@@ -1,3 +1,4 @@
+use crate::domain::MessageType;
 use godot::prelude::*;
 use godot_tokio::AsyncRuntime;
 use tokio::sync::{mpsc, oneshot};
@@ -27,7 +28,10 @@ pub struct SocialManagerSingleton {
 #[godot_api]
 impl SocialManagerSingleton {
     #[signal]
-    fn social_chat_received(author_name: String, text: String, channel: ());
+    fn social_chat_received(name: String, text: String, channel: u8);
+
+    #[signal]
+    fn system_message_received(text: String);
 
     #[func]
     pub fn connect(&mut self, server_url: String, token: String) {
@@ -50,8 +54,31 @@ impl SocialManagerSingleton {
                 text,
                 sender_name,
                 sender_id,
+            } => self.signals().social_chat_received().emit(
+                sender_name,
+                text,
+                MessageType::from_social_channel(channel),
+            ),
+            SocialEvent::Whisper {
+                text,
+                sender_name,
+                sender_id,
             } => {
-                // self.signals().social_chat_received().emit(),
+                self.signals()
+                    .social_chat_received()
+                    .emit(sender_name, text, MessageType::WHISPER)
+            }
+            SocialEvent::WhisperReceipt {
+                text,
+                recipient_name,
+                recipient_id,
+            } => self.signals().social_chat_received().emit(
+                recipient_name,
+                text,
+                MessageType::WHISPER_RECEIPT,
+            ),
+            SocialEvent::SystemMessage { text } => {
+                self.signals().system_message_received().emit(text)
             }
         }
     }
