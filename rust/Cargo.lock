@@ -600,7 +600,7 @@ dependencies = [
 [[package]]
 name = "mmo-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#bc7bd3d44568b73e588eb3812a2d169a7c453940"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#23d3e8636627c35839ff6fbdd651afe960e2d8b1"
 dependencies = [
  "base64",
  "flatbuffers",
@@ -880,7 +880,7 @@ dependencies = [
 [[package]]
 name = "schemas"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#bc7bd3d44568b73e588eb3812a2d169a7c453940"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#23d3e8636627c35839ff6fbdd651afe960e2d8b1"
 dependencies = [
  "flatbuffers",
  "flatc-rust",
@@ -1194,7 +1194,7 @@ dependencies = [
 [[package]]
 name = "web-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#bc7bd3d44568b73e588eb3812a2d169a7c453940"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#23d3e8636627c35839ff6fbdd651afe960e2d8b1"
 dependencies = [
  "flatbuffers",
  "futures-util",

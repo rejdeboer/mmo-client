@@ -27,7 +27,7 @@ pub struct SocialManagerSingleton {
 #[godot_api]
 impl SocialManagerSingleton {
     #[signal]
-    fn chat_received(author_name: String, text: String, channel: ());
+    fn social_chat_received(author_name: String, text: String, channel: ());
 
     #[func]
     pub fn connect(&mut self, server_url: String, token: String) {
@@ -50,7 +50,9 @@ impl SocialManagerSingleton {
                 text,
                 sender_name,
                 sender_id,
-            } => {}
+            } => {
+                // self.signals().social_chat_received().emit(),
+            }
         }
     }
 }
