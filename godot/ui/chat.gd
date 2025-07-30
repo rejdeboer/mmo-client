@@ -14,6 +14,7 @@ enum ChannelType {
 
 func _ready():
 	message_input.text_submitted.connect(_on_text_submitted)
+	SocialManager.social_chat_received.connect(_on_social_chat_received)
 	
 func _process(delta):
 	if Input.is_action_pressed("enter"):
@@ -21,6 +22,10 @@ func _process(delta):
 			send_message()
 		else:
 			message_input.grab_focus()
+
+
+func _on_social_chat_received(name: String, text: String, message_type: MessageType) -> void:
+	print("received social message: " + text)
 
 func _on_text_submitted(text):
 	pass
