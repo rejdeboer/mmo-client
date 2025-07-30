@@ -47,6 +47,46 @@ impl SocialManagerSingleton {
         self.state = ConnectionState::Connecting { confirm_rx };
     }
 
+    #[func]
+    pub fn send_whisper(&mut self, recipient_name: String, text: String) {
+        self.send_action(SocialAction::WhisperByName {
+            recipient_name,
+            text,
+        });
+    }
+
+    fn send_action(&mut self, action: SocialAction) {
+        let ConnectionState::Connected {
+            action_tx,
+            event_rx: _,
+        } = self.state
+        else {
+            self.signals()
+                .system_message_received()
+                .emit("Something went wrong, please try relogging");
+            godot_error!("tried to send {:?} while not connected to server", action);
+            return;
+        };
+
+        if let Err(err) = action_tx.try_send(action) {
+            match err {
+                mpsc::error::TrySendError::Full(_) => {
+                    self.signals()
+                        .system_message_received()
+                        .emit("Too many actions to send, please wait a moment");
+                    godot_error!("action channel is full");
+                }
+                mpsc::error::TrySendError::Closed(_) => {
+                    self.signals()
+                        .system_message_received()
+                        .emit("Something went wrong, please try relogging");
+                    godot_error!("action channel is closed prematurely");
+                    self.state = ConnectionState::Disconnected;
+                }
+            }
+        }
+    }
+
     fn process_event(&mut self, event: SocialEvent) {
         match event {
             SocialEvent::Chat {
