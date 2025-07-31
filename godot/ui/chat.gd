@@ -46,7 +46,7 @@ func add_message(username, message):
 
 
 func _on_input_text_changed(new_text):
-	if new_text.begins_with("/"):
+	if new_text.begins_with("/") and new_text.contains(" "):
 		var parts = new_text.split(" ")
 		match parts[0]:
 			"/s", "/say":
@@ -56,7 +56,7 @@ func _on_input_text_changed(new_text):
 				message_input.text = new_text.trim_prefix(parts[0] + " ")
 				current_channel = MessageType.YELL
 			"/w", "/whisper":
-				if parts.size() < 2:
+				if parts.size() < 3:
 					return
 				current_whisper_recipient_name = parts[1]
 				current_channel = MessageType.WHISPER

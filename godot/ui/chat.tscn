@@ -33,6 +33,5 @@ vertical_alignment = 2
 
 [node name="ChatInput" type="LineEdit" parent="Panel/VBoxContainer"]
 layout_mode = 2
-alignment = 3
 
 [connection signal="text_changed" from="Panel/VBoxContainer/ChatInput" to="." method="_on_input_text_changed"]
