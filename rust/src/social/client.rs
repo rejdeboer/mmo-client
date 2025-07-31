@@ -28,10 +28,10 @@ pub struct SocialManagerSingleton {
 #[godot_api]
 impl SocialManagerSingleton {
     #[signal]
-    fn social_chat_received(name: String, text: String, channel: u8);
+    fn social_chat_received(name: GString, text: GString, channel: u8);
 
     #[signal]
-    fn system_message_received(text: String);
+    fn system_message_received(text: GString);
 
     #[func]
     pub fn connect(&mut self, server_url: String, token: String) {
@@ -59,7 +59,7 @@ impl SocialManagerSingleton {
         let ConnectionState::Connected {
             action_tx,
             event_rx: _,
-        } = self.state
+        } = &mut self.state
         else {
             self.signals()
                 .system_message_received()
@@ -95,30 +95,30 @@ impl SocialManagerSingleton {
                 sender_name,
                 sender_id,
             } => self.signals().social_chat_received().emit(
-                sender_name,
-                text,
+                &sender_name,
+                &text,
                 MessageType::from_social_channel(channel),
             ),
             SocialEvent::Whisper {
                 text,
                 sender_name,
                 sender_id,
-            } => {
-                self.signals()
-                    .social_chat_received()
-                    .emit(sender_name, text, MessageType::WHISPER)
-            }
+            } => self.signals().social_chat_received().emit(
+                &sender_name,
+                &text,
+                MessageType::WHISPER,
+            ),
             SocialEvent::WhisperReceipt {
                 text,
                 recipient_name,
                 recipient_id,
             } => self.signals().social_chat_received().emit(
-                recipient_name,
-                text,
+                &recipient_name,
+                &text,
                 MessageType::WHISPER_RECEIPT,
             ),
             SocialEvent::SystemMessage { text } => {
-                self.signals().system_message_received().emit(text)
+                self.signals().system_message_received().emit(&text)
             }
         }
     }
