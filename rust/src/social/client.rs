@@ -48,6 +48,14 @@ impl SocialManagerSingleton {
     }
 
     #[func]
+    pub fn send_chat(&mut self, message_type: u8, text: String) {
+        let Some(channel) = MessageType::to_social_channel(message_type) else {
+            return;
+        };
+        self.send_action(SocialAction::Chat { channel, text });
+    }
+
+    #[func]
     pub fn send_whisper(&mut self, recipient_name: String, text: String) {
         self.send_action(SocialAction::WhisperByName {
             recipient_name,
