@@ -43,3 +43,21 @@ func receive_message(channel: MessageType, sender: String, text: String):
 
 func add_message(username, message):
 	chat_display.append_text("[b]" + username + ":[/b] " + message + "\n")
+
+
+func _on_input_text_changed(new_text):
+	if new_text.begins_with("/"):
+		var parts = new_text.split(" ")
+		match parts[0]:
+			"/s", "/say":
+				message_input.text = new_text.trim_prefix(parts[0] + " ")
+				current_channel = MessageType.SAY
+			"/y", "/yell":
+				message_input.text = new_text.trim_prefix(parts[0] + " ")
+				current_channel = MessageType.YELL
+			"/w", "/whisper":
+				if parts.size() < 2:
+					return
+				current_whisper_recipient_name = parts[1]
+				current_channel = MessageType.WHISPER
+				message_input.text = new_text.trim_prefix(parts[0] + " " + parts[1])
