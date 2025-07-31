@@ -1,7 +1,9 @@
 use std::time::Duration;
 
 use godot::prelude::*;
-use mmo_client::{ChannelType, ConnectionEvent, GameClient, PlayerAction, decode_token};
+use mmo_client::{ConnectionEvent, GameClient, PlayerAction, decode_token};
+
+use crate::domain::MessageType;
 
 use super::event::encode_game_event;
 use super::movement::read_movement_bytes;
@@ -94,9 +96,11 @@ impl NetworkManager {
     }
 
     #[func]
-    pub fn queue_chat(&mut self, channel: u8, text: String) {
-        self.action_queue
-            .push(PlayerAction::Chat(ChannelType(channel), text));
+    pub fn queue_chat(&mut self, message_type: u8, text: String) {
+        let Some(channel) = MessageType::to_game_channel(message_type) else {
+            return;
+        };
+        self.action_queue.push(PlayerAction::Chat(channel, text));
     }
 
     #[func]
