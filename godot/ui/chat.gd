@@ -38,7 +38,7 @@ func send_message():
 
 	message_input.grab_focus()
 
-func receive_message(channel: MessageType, sender: String, text: String):
+func receive_message(message_type: int, sender: String, text: String):
 	add_message(sender, text)
 
 func add_message(username, message):

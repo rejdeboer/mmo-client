@@ -1,7 +1,7 @@
+use super::client::convert_transform;
+use crate::domain::MessageType;
 use godot::prelude::*;
 use mmo_client::GameEvent;
-
-use super::client::convert_transform;
 
 #[repr(u8)]
 enum ServerEventType {
@@ -20,7 +20,7 @@ pub fn encode_game_event(event: GameEvent) -> Dictionary {
         } => {
             vdict! {
                 "type": ServerEventType::Chat as u8,
-                "channel": channel.0,
+                "message_type": MessageType::from_game_channel(channel),
                 "sender_name": sender_name,
                 "text": text,
             }
