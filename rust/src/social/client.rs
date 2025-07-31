@@ -34,13 +34,15 @@ impl SocialManagerSingleton {
     fn system_message_received(text: GString);
 
     #[func]
-    pub fn connect(&mut self, server_url: String, token: String) {
+    pub fn connect_to_server(&mut self, server_url: String, token: String) {
         let (confirm_tx, confirm_rx) = oneshot::channel::<ConnectionResult>();
 
         AsyncRuntime::spawn(async move {
             let result = web_client::connect(&server_url, &token).await;
             if confirm_tx.send(result).is_err() {
                 godot_error!("failed to send connection confirmation");
+            } else {
+                godot_print!("successfully sent connection result through oneshot");
             }
         });
 
