@@ -39,6 +39,18 @@ impl MessageType {
         }
     }
 
+    pub fn to_game_channel(message_type: u8) -> Option<GameChannelType> {
+        match message_type {
+            Self::SAY => Some(GameChannelType::Say),
+            Self::YELL => Some(GameChannelType::Yell),
+            Self::ZONE => Some(GameChannelType::Zone),
+            other => {
+                godot_warn!("unhandled game message type: {:?}", other);
+                None
+            }
+        }
+    }
+
     pub fn from_social_channel(channel: SocialChannelType) -> u8 {
         match channel {
             SocialChannelType::Guild => Self::GUILD,
@@ -47,6 +59,18 @@ impl MessageType {
             other => {
                 godot_warn!("unhandled social channel type: {:?}", other);
                 Self::UNKNOWN
+            }
+        }
+    }
+
+    pub fn to_social_channel(message_type: u8) -> Option<SocialChannelType> {
+        match message_type {
+            Self::GUILD => Some(SocialChannelType::Guild),
+            Self::PARTY => Some(SocialChannelType::Party),
+            Self::TRADE => Some(SocialChannelType::Trade),
+            other => {
+                godot_warn!("unhandled social message type: {:?}", other);
+                None
             }
         }
     }
