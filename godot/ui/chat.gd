@@ -3,7 +3,7 @@ extends Control
 @onready var chat_display = $Panel/VBoxContainer/Display
 @onready var message_input = $Panel/VBoxContainer/ChatInput
 
-var last_whisper: String
+var current_whisper_recipient_name: String
 var current_channel: int = MessageType.SAY
 
 func _ready():
@@ -28,7 +28,13 @@ func send_message():
 	if text.is_empty():
 		return
 
-	NetworkManager.queue_chat(MessageType.SAY, message_input.text)
+	match current_channel:
+		MessageType.SAY, MessageType.YELL, MessageType.ZONE:
+			NetworkManager.queue_chat(current_channel, text)
+		MessageType.GUILD, MessageType.PARTY:
+			SocialManager.send_chat(current_channel, text)
+		MessageType.WHISPER:
+			SocialManager.send_whisper(current_whisper_recipient_name, text)
 
 	message_input.grab_focus()
 
