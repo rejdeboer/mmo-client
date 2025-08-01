@@ -49,7 +49,7 @@ func _on_login_button_pressed() -> void:
 	}
 	
 	login_status_label.text = "Logging in..."
-	_make_http_request("token", body)
+	_make_http_request("/token", body)
 
 
 func _on_register_button_pressed() -> void:
@@ -68,7 +68,7 @@ func _on_register_button_pressed() -> void:
 	}
 	
 	register_status_label.text = "Creating account..."
-	_make_http_request("account", body)
+	_make_http_request("/account", body)
 
 
 func _on_go_to_register_button_pressed() -> void:

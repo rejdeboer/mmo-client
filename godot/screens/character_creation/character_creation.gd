@@ -23,7 +23,7 @@ func _on_create_button_pressed() -> void:
 	create_button.disabled = true # Prevent spamming the button
 
 	var base_url = ConfigManager.web_server.base_url
-	var url = base_url + "character" 
+	var url = base_url + "/character" 
 	
 	var headers = [
 		"Content-Type: application/json",

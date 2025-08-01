@@ -20,7 +20,7 @@ func fetch_character_list() -> void:
 	play_button.disabled = true
 	
 	var base_url = ConfigManager.web_server.base_url
-	var url = base_url + "character" 
+	var url = base_url + "/character" 
 	
 	var headers = [
 		"Content-Type: application/json",

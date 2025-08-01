@@ -26,7 +26,7 @@ func _ready() -> void:
 		"password": password
 	}
 	
-	_make_http_request("token", body)
+	_make_http_request("/token", body)
 
 
 func _on_http_request_completed(result, response_code, headers, body):
@@ -43,7 +43,7 @@ func _on_http_request_completed(result, response_code, headers, body):
 			var select_character_body = {
 				"character_id": int(OS.get_cmdline_args().get(3)),
 			}
-			_make_http_request("game/request-entry", select_character_body, auth_headers)
+			_make_http_request("/game/request-entry", select_character_body, auth_headers)
 		Step.CHARACTER_SELECT:
 			NetworkManager.connect_to_server(response["connect_token"])
 			SocialManager.connect_to_server(ConfigManager.web_server.base_url, PlayerSession.jwt)
