@@ -46,6 +46,7 @@ func _on_http_request_completed(result, response_code, headers, body):
 			_make_http_request("/game/request-entry", select_character_body, auth_headers)
 		Step.CHARACTER_SELECT:
 			NetworkManager.connect_to_server(response["connect_token"])
+			PlayerSession.store_session(response["jwt"])
 			SocialManager.connect_to_server(ConfigManager.web_server.base_url, response["jwt"])
 	
 	current_step += 1

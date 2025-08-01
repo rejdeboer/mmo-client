@@ -9,6 +9,8 @@ var current_channel: int = MessageType.SAY
 func _ready():
 	message_input.text_submitted.connect(_on_text_submitted)
 	SocialManager.social_chat_received.connect(_on_social_chat_received)
+	SocialManager.whisper_received.connect(_on_whisper_received)
+	SocialManager.whisper_confirmed.connect(_on_whisper_confirmed)
 	
 func _process(delta):
 	if Input.is_action_pressed("enter"):
@@ -16,8 +18,14 @@ func _process(delta):
 			message_input.grab_focus()
 
 
-func _on_social_chat_received(name: String, text: String, message_type: int) -> void:
+func _on_social_chat_received(sender_id: int, sender_name: String, text: String, message_type: int) -> void:
 	print("received social message: " + text)
+
+func _on_whisper_received(sender_name: String, text: String) -> void:
+	chat_display.append_text("[color=purple][b][" + sender_name + "]:[/b] " + text + "[/color]\n")
+
+func _on_whisper_confirmed(recipient_name: String, text: String) -> void:
+	chat_display.append_text("[color=purple][b]To [" + recipient_name + "]:[/b] " + text + "[/color]\n")
 
 func _on_text_submitted(text):
 	send_message()

@@ -23,8 +23,6 @@ impl MessageType {
     #[constant]
     pub const WHISPER: u8 = 6;
     #[constant]
-    pub const WHISPER_RECEIPT: u8 = 7;
-    #[constant]
     pub const UNKNOWN: u8 = 255;
 
     pub fn from_game_channel(channel: GameChannelType) -> u8 {
