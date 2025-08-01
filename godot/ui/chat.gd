@@ -8,7 +8,7 @@ var current_channel: int = MessageType.SAY
 
 func _ready():
 	message_input.text_submitted.connect(_on_text_submitted)
-	SocialManager.social_chat_received.connect(_on_social_chat_received)
+	SocialManager.chat_received.connect(_on_social_chat_received)
 	SocialManager.whisper_received.connect(_on_whisper_received)
 	SocialManager.whisper_confirmed.connect(_on_whisper_confirmed)
 	
