@@ -28,7 +28,7 @@ pub struct SocialManagerSingleton {
 #[godot_api]
 impl SocialManagerSingleton {
     #[signal]
-    fn chat_received(sender_id: i32, sender_name: GString, text: GString, channel: u8);
+    fn chat_received(sender_name: GString, text: GString, channel: u8);
 
     #[signal]
     fn whisper_received(sender_name: GString, text: GString);
@@ -112,7 +112,6 @@ impl SocialManagerSingleton {
                 sender_name,
                 sender_id,
             } => self.signals().chat_received().emit(
-                sender_id,
                 &sender_name,
                 &text,
                 MessageType::from_social_channel(channel),

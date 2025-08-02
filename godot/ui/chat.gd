@@ -3,6 +3,21 @@ extends Control
 @onready var chat_display = $Panel/VBoxContainer/Display
 @onready var message_input = $Panel/VBoxContainer/ChatInput
 
+const CHANNEL_COLORS = {
+	MessageType.SAY: Color.WHITE,
+	MessageType.YELL: Color.DARK_RED,
+	MessageType.WHISPER: Color.MEDIUM_PURPLE,
+	MessageType.GUILD: Color.PALE_GREEN,
+	MessageType.PARTY: Color.DARK_BLUE,
+}
+
+const CHANNEL_NAMES = {
+	MessageType.SAY: "Say",
+	MessageType.YELL: "Yell",
+	MessageType.GUILD: "Guild",
+	MessageType.PARTY: "Party",
+}
+
 var current_whisper_recipient_name: String
 var current_channel: int = MessageType.SAY
 
@@ -18,11 +33,20 @@ func _process(delta):
 			message_input.grab_focus()
 
 
-func _on_social_chat_received(sender_id: int, sender_name: String, text: String, message_type: int) -> void:
-	print("received social message: " + text)
+func _on_social_chat_received(sender_name: String, text: String, message_type: int) -> void:
+	var color = CHANNEL_COLORS.get(message_type, Color.WHITE)
+	var channel = CHANNEL_NAMES.get(message_type)
+
+	var format = "[color={color}][b][{channel}][url={sender}][{sender}]:[/url][/b] {text}[/color]\n"
+	chat_display.append_text(format.format({
+		"color": color.to_html(),
+		"channel": channel.to_lower(),
+		"sender": sender_name,
+		"text": text,
+	}))
 
 func _on_whisper_received(sender_name: String, text: String) -> void:
-	chat_display.append_text("[color=purple][b][" + sender_name + "]:[/b] " + text + "[/color]\n")
+	chat_display.append_text("[color=purple][b][" + sender_name + "] whispers:[/b] " + text + "[/color]\n")
 
 func _on_whisper_confirmed(recipient_name: String, text: String) -> void:
 	chat_display.append_text("[color=purple][b]To [" + recipient_name + "]:[/b] " + text + "[/color]\n")
@@ -46,11 +70,18 @@ func send_message():
 
 	message_input.grab_focus()
 
-func receive_message(message_type: int, sender: String, text: String):
-	add_message(sender, text)
+func receive_game_message(message_type: int, sender_name: String, text: String):
+	var color = CHANNEL_COLORS.get(message_type, Color.WHITE)
+	var channel = CHANNEL_NAMES.get(message_type)
 
-func add_message(username, message):
-	chat_display.append_text("[b]" + username + ":[/b] " + message + "\n")
+	# TODO: Format won't work for zone chat
+	var format = "[color={color}][b][url={sender}][{sender}] {channel}s:[/url][/b] {text}[/color]\n"
+	chat_display.append_text(format.format({
+		"color": color.to_html(),
+		"channel": channel.to_lower(),
+		"sender": sender_name,
+		"text": text,
+	}))
 
 
 func _on_input_text_changed(new_text):
