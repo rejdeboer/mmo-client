@@ -41,13 +41,14 @@ func _physics_process(delta):
 
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		velocity.y -= fall_acceleration * delta
-	#elif Input.is_action_just_pressed("jump"):
-	#	NetworkManager.queue_jump()
-	#	velocity.y = jump_velocity
+		is_transform_dirty = true
+	elif Input.is_action_just_pressed("jump"):
+		is_transform_dirty = true
+		NetworkManager.queue_jump()
+		velocity.y = jump_velocity
 
-	velocity.x = horizontal_velocity.x
-	velocity.z = horizontal_velocity.z
-	velocity *= movement_speed
+	velocity.x = horizontal_velocity.x * movement_speed
+	velocity.z = horizontal_velocity.z * movement_speed
 	move_and_slide()
 	
 func _unhandled_input(event: InputEvent) -> void:
