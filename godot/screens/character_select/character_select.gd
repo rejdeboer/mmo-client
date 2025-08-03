@@ -42,6 +42,7 @@ func _on_http_request_completed(result: int, response_code: int, headers: Packed
 func handle_request_success(response: Variant):
 	if response.has("connect_token"):
 		NetworkManager.connect_to_server(response["connect_token"])
+		SocialManager.connect_to_server(ConfigManager.web_server.base_url, response["jwt"])
 		# TODO: Transition to game
 		
 	else: # For character list
