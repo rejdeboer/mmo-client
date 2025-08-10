@@ -600,7 +600,7 @@ dependencies = [
 [[package]]
 name = "mmo-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#c062395e4f6721db1e9316d1311c0e61d379d449"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#624baeeb37ab95ad904fe546a793c1d0a888c3e2"
 dependencies = [
  "base64",
  "flatbuffers",
@@ -880,7 +880,7 @@ dependencies = [
 [[package]]
 name = "schemas"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#c062395e4f6721db1e9316d1311c0e61d379d449"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#624baeeb37ab95ad904fe546a793c1d0a888c3e2"
 dependencies = [
  "flatbuffers",
  "flatc-rust",
@@ -931,18 +931,18 @@ dependencies = [
 
 [[package]]
 name = "signal-hook-registry"
-version = "1.4.5"
+version = "1.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9203b8055f63a2a00e2f593bb0510367fe707d7ff1e5c872de2f537b339e5410"
+checksum = "b2a4719bff48cee6b39d12c020eeb490953ad2443b7055bd0b21fca26bd8c28b"
 dependencies = [
  "libc",
 ]
 
 [[package]]
 name = "slab"
-version = "0.4.10"
+version = "0.4.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "04dc19736151f35336d325007ac991178d504a119863a2fcb3758cdb5e52c50d"
+checksum = "7a2ae44ef20feb57a68b23d846850f861394c2e02dc425a50098ae8c90267589"
 
 [[package]]
 name = "smallvec"
@@ -1026,9 +1026,9 @@ dependencies = [
 
 [[package]]
 name = "tokio"
-version = "1.47.0"
+version = "1.47.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "43864ed400b6043a4757a25c7a64a8efde741aed79a056a2fb348a406701bb35"
+checksum = "89e49afdadebb872d3145a5638b59eb0691ea23e46ca484037cfab3b76b95038"
 dependencies = [
  "backtrace",
  "bytes",
@@ -1194,7 +1194,7 @@ dependencies = [
 [[package]]
 name = "web-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#c062395e4f6721db1e9316d1311c0e61d379d449"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#624baeeb37ab95ad904fe546a793c1d0a888c3e2"
 dependencies = [
  "flatbuffers",
  "futures-util",
@@ -1378,9 +1378,9 @@ dependencies = [
 
 [[package]]
 name = "zerovec"
-version = "0.11.2"
+version = "0.11.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4a05eb080e015ba39cc9e23bbe5e7fb04d5fb040350f99f34e338d5fdd294428"
+checksum = "e7aa2bd55086f1ab526693ecbe444205da57e25f4489879da80635a46d90e73b"
 dependencies = [
  "yoke",
  "zerofrom",

@@ -3,47 +3,10 @@ use std::time::Duration;
 use godot::prelude::*;
 use mmo_client::{ConnectionEvent, GameClient, PlayerAction, decode_token};
 
-use crate::domain::MessageType;
+use crate::domain::{Entity, MessageType};
 
 use super::event::encode_game_event;
 use super::movement::read_movement_bytes;
-
-#[derive(GodotClass, Debug, Clone)]
-#[class(base=RefCounted, init)]
-pub struct Character {
-    #[var]
-    pub entity_id: i64,
-    #[var]
-    pub name: GString,
-    #[var]
-    pub hp: i32,
-    #[var]
-    pub level: i32,
-    #[var]
-    pub transform: Transform3D,
-}
-
-impl From<mmo_client::Character> for Character {
-    fn from(character: mmo_client::Character) -> Self {
-        Self {
-            entity_id: character.entity_id as i64,
-            name: GString::from(character.name),
-            hp: character.hp,
-            level: character.level,
-            transform: convert_transform(character.transform),
-        }
-    }
-}
-
-pub fn convert_transform(transform: mmo_client::Transform) -> Transform3D {
-    let basis = Basis::from_axis_angle(Vector3::new(0., 1., 0.), transform.yaw);
-    let pos = Vector3::new(
-        transform.position.x,
-        transform.position.y,
-        transform.position.z,
-    );
-    Transform3D::new(basis, pos)
-}
 
 #[derive(GodotClass)]
 #[class(base=Object, init)]
@@ -60,7 +23,7 @@ impl NetworkManager {
     fn connection_success();
 
     #[signal]
-    fn enter_game_success(character: Gd<Character>);
+    fn enter_game_success(character: Gd<Entity>);
 
     #[func]
     pub fn connect_to_server(&mut self, encoded_token: String) {
@@ -76,10 +39,10 @@ impl NetworkManager {
             godot_print!("received {:?} event", event);
             match event {
                 ConnectionEvent::Connected => self.signals().connection_success().emit(),
-                ConnectionEvent::EnterGameSuccess { character } => self
+                ConnectionEvent::EnterGameSuccess { player_entity } => self
                     .signals()
                     .enter_game_success()
-                    .emit(&Gd::from_object(character.into())),
+                    .emit(&Gd::from_object(player_entity.into())),
                 _ => (),
             }
         }
