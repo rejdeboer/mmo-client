@@ -1,4 +1,4 @@
-use crate::domain::{MessageType, convert_transform};
+use crate::domain::{Entity, MessageType, convert_transform};
 use godot::prelude::*;
 use mmo_client::GameEvent;
 
@@ -31,7 +31,7 @@ pub fn encode_game_event(event: GameEvent) -> Dictionary {
             vdict! {"type": ServerEventType::EntityMove as u8, "entity_id": entity_id, "transform": convert_transform(transform)}
         }
         GameEvent::SpawnEntity(entity) => {
-            vdict! {"type": ServerEventType::EntitySpawn as u8, "entity_id": entity.id, "transform": convert_transform(entity.transform)}
+            vdict! {"type": ServerEventType::EntitySpawn as u8, "entity": Gd::from_object(Entity::from(entity))}
         }
         GameEvent::DespawnEntity(entity_id) => {
             vdict! {"type": ServerEventType::EntityDespawn as u8, "entity_id": entity_id}

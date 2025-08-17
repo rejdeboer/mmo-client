@@ -70,8 +70,9 @@ func handle_server_events(events: Array[Dictionary]):
 			ServerEventType.ENTITY_SPAWN:
 				print("spawning entity")
 				var entity_instance = EntityScene.instantiate()
-				entity_instance.transform = event["transform"]
-				entities[event["entity_id"]] = entity_instance
+				var entity: Entity = event["entity"]
+				entity_instance.transform = entity.transform
+				entities[entity.id] = entity_instance
 				add_child(entity_instance)
 			ServerEventType.ENTITY_DESPAWN:
 				print("despawning entity")
