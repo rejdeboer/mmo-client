@@ -1,6 +1,6 @@
 extends Node
 
-var _pending_character_data: Character
+var _pending_character_data: Entity
 
 func _ready() -> void:
 	NetworkManager.connection_success.connect(_on_connection_success)
@@ -9,9 +9,9 @@ func _ready() -> void:
 func _on_connection_success() -> void:
 	print("GameManager: Received connection success signal")
 
-func _on_enter_game_success(character_data: Character) -> void:
-	print("GameManager: Received game entry data: ", character_data)
-	_pending_character_data = character_data
+func _on_enter_game_success(player_entity: Entity) -> void:
+	print("GameManager: Received game entry data: ", player_entity)
+	_pending_character_data = player_entity
 	get_tree().change_scene_to_file("res://screens/loading/loading_screen.tscn")
 	
 

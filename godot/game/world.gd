@@ -19,14 +19,14 @@ enum ServerEventType {
 	CHAT = 4,
 }
 
-func initialize_world(character_data: Character) -> void:
-	print("WorldScene: Initializing with data: ", character_data)
+func initialize_world(player_entity: Entity) -> void:
+	print("WorldScene: Initializing with data: ", player_entity)
 	
-	if player and character_data:
-		player_entity_id = character_data.entity_id
-		player.transform = character_data.transform
-		# player.level = character_data.level
-		# player.character_name = character_data.name
+	if player and player_entity:
+		player_entity_id = player_entity.entity_id
+		player.transform = player_entity.transform
+		player.level = player_entity.level
+		player.character_name = player_entity.name
 		
 	# 	# You could also set up the camera, UI elements, etc.
 	# 	$HUD/LevelLabel.text = "Lv. " + str(player.level)
