@@ -11,6 +11,9 @@ extends CharacterBody3D
 @onready var _camera := %Camera3D as Camera3D
 @onready var _camera_pivot := %CameraPivot as Node3D
 
+var level = 0
+var character_name = ""
+
 var is_left_mouse_down = false
 var is_right_mouse_down = false
 

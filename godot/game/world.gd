@@ -23,7 +23,7 @@ func initialize_world(player_entity: Entity) -> void:
 	print("WorldScene: Initializing with data: ", player_entity)
 	
 	if player and player_entity:
-		player_entity_id = player_entity.entity_id
+		player_entity_id = player_entity.id
 		player.transform = player_entity.transform
 		player.level = player_entity.level
 		player.character_name = player_entity.name

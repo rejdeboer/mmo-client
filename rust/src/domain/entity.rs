@@ -6,7 +6,7 @@ use mmo_client::EntityAttributes;
 #[class(base=RefCounted, init)]
 pub struct Entity {
     #[var]
-    pub entity_id: i64,
+    pub id: i64,
     #[var]
     pub name: GString,
     #[var]
@@ -46,7 +46,7 @@ impl From<mmo_client::Entity> for Entity {
         };
 
         Self {
-            entity_id: entity.id as i64,
+            id: entity.id as i64,
             name: GString::from(entity.name),
             hp: entity.vitals.hp,
             level: entity.level,
