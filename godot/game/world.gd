@@ -27,9 +27,6 @@ func initialize_world(player_entity: Entity) -> void:
 		player.transform = player_entity.transform
 		player.level = player_entity.level
 		player.character_name = player_entity.name
-		
-	# 	# You could also set up the camera, UI elements, etc.
-	# 	$HUD/LevelLabel.text = "Lv. " + str(player.level)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
