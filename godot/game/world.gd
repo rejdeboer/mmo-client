@@ -45,11 +45,9 @@ func run_network_tick(delta):
 
 	if player.is_transform_dirty:
 		player.is_transform_dirty = false
-		var pos = player.position
-		buffer.put_float(pos.x)
-		buffer.put_float(pos.y)
-		buffer.put_float(pos.z)
 		buffer.put_float(player.rotation.y)
+		buffer.put_float(player.input_vector.y)
+		buffer.put_float(player.input_vector.x)
 
 	var events = NetworkManager.sync(buffer.data_array, delta)
 	handle_server_events(events)

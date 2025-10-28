@@ -18,28 +18,24 @@ var is_left_mouse_down = false
 var is_right_mouse_down = false
 
 var is_transform_dirty = false
+var input_vector = Vector2()
 
 func _physics_process(delta):
 	var turn_input = Input.get_axis("turn_right", "turn_left")
 	if turn_input != 0:
 		is_transform_dirty = true
 		self.rotate_y(turn_input * turn_speed_radians * delta)
-	
-	var horizontal_velocity = Vector3.ZERO
-	if Input.is_action_pressed("move_right"):
-		horizontal_velocity += transform.basis.x
-	if Input.is_action_pressed("move_left"):
-		horizontal_velocity -= transform.basis.x
-	if Input.is_action_pressed("move_back"):
-		horizontal_velocity += transform.basis.z
-	if Input.is_action_pressed("move_forward"):
-		horizontal_velocity -= transform.basis.z
-		
-	if horizontal_velocity != Vector3.ZERO:
-		horizontal_velocity = horizontal_velocity.normalized()
-		# %Character/AnimationPlayer.current_animation = "run"
+
+	var input_vector = Input.get_vector("move_left", "move_right", "move_back", "move_forward")
+	var direction = (transform.basis * Vector3(input_vector.x, 0, input_vector.y)).normalized()
+	if direction:
 		is_transform_dirty = true
-	# else:
+		velocity.x = direction.x * movement_speed
+		velocity.z = direction.z * movement_speed
+		# %Character/AnimationPlayer.current_animation = "run"
+	else:
+		velocity.x = move_toward(velocity.x, 0, movement_speed)
+		velocity.z = move_toward(velocity.z, 0, movement_speed)
 		# %Character/AnimationPlayer.current_animation = "idle"
 
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
@@ -50,8 +46,6 @@ func _physics_process(delta):
 		NetworkManager.queue_jump()
 		velocity.y = jump_velocity
 
-	velocity.x = horizontal_velocity.x * movement_speed
-	velocity.z = horizontal_velocity.z * movement_speed
 	move_and_slide()
 	
 func _unhandled_input(event: InputEvent) -> void:
