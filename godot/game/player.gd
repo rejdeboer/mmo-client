@@ -26,7 +26,7 @@ func _physics_process(delta):
 		is_transform_dirty = true
 		self.rotate_y(turn_input * turn_speed_radians * delta)
 
-	var input_vector = Input.get_vector("move_left", "move_right", "move_back", "move_forward")
+	input_vector = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction = (transform.basis * Vector3(input_vector.x, 0, input_vector.y)).normalized()
 	if direction:
 		is_transform_dirty = true
