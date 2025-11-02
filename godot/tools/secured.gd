@@ -18,8 +18,8 @@ var current_step = Step.LOGIN
 
 func _ready() -> void:
 	var args = OS.get_cmdline_args()
-	var email = args.get(1)
-	var password = args.get(2)
+	var email = args.get(2)
+	var password = args.get(3)
 
 	var body = {
 		"email": email,
@@ -41,7 +41,7 @@ func _on_http_request_completed(result, response_code, headers, body):
 			PlayerSession.store_session(response["jwt"])
 			var auth_headers = ["Authorization: Bearer " + response["jwt"]]
 			var select_character_body = {
-				"character_id": int(OS.get_cmdline_args().get(3)),
+				"character_id": int(OS.get_cmdline_args().get(4)),
 			}
 			_make_http_request("/game/request-entry", select_character_body, auth_headers)
 		Step.CHARACTER_SELECT:

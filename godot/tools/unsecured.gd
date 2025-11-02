@@ -15,7 +15,7 @@ func _ready() -> void:
 		printerr("Invalid IP or Port.")
 		return
 
-	var character_id = OS.get_cmdline_args().get(3)
+	var character_id = OS.get_cmdline_args().get(4)
 
 	NetworkManager.connect_unsecure(ip, port, int(character_id))
 
