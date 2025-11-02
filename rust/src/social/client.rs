@@ -1,6 +1,6 @@
+use crate::async_runtime::AsyncRuntime;
 use crate::domain::MessageType;
 use godot::prelude::*;
-use godot_tokio::AsyncRuntime;
 use tokio::sync::{mpsc, oneshot};
 use web_client::{ConnectionResult, SocialAction, SocialEvent};
 
