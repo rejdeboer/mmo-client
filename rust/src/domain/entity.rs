@@ -40,14 +40,14 @@ impl From<mmo_client::Entity> for Entity {
                 guild_name,
             } => Variant::from(Gd::from_object(PlayerAttributes {
                 character_id,
-                guild_name: guild_name.map_or(GString::new(), GString::from),
+                guild_name: guild_name.as_ref().map_or(GString::new(), GString::from),
             })),
             EntityAttributes::Npc => Variant::from(Gd::from_object(NpcAttributes {})),
         };
 
         Self {
             id: entity.id as i64,
-            name: GString::from(entity.name),
+            name: GString::from(&entity.name),
             hp: entity.vitals.hp,
             level: entity.level,
             transform: convert_transform(entity.transform),

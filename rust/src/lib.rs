@@ -1,10 +1,11 @@
+mod async_runtime;
 mod domain;
 mod game;
 mod social;
 
+use async_runtime::AsyncRuntime;
 use godot::classes::Engine;
 use godot::prelude::*;
-use godot_tokio::AsyncRuntime;
 
 use crate::game::NetworkManager;
 

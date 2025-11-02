@@ -42,7 +42,7 @@ impl NetworkManager {
                 ConnectionEvent::EnterGameSuccess { player_entity } => self
                     .signals()
                     .enter_game_success()
-                    .emit(&Gd::from_object(player_entity.into())),
+                    .emit(&Gd::<Entity>::from_object(player_entity.into())),
                 _ => (),
             }
         }
