@@ -56,7 +56,7 @@ func handle_server_events(events: Array[Dictionary]):
 				var entity_id = event["entity_id"]
 				if player_entity_id == entity_id:
 					# TODO: Proper interpolation
-					#player.transform = event["transform"]
+					player.transform = player.transform.interpolate_with(event["transform"], 0.2)
 					pass
 				elif entities.has(entity_id):
 					entities[entity_id].target_transform = event["transform"]
