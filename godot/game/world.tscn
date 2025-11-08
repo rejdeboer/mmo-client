@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://cpjye5voq2x4e" path="res://ui/chat.tscn" id="3_tvmmn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdft3"]
-size = Vector3(1000, 2, 1000)
+size = Vector3(5, 2, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aseec"]
 albedo_color = Color(0.419608, 0.811765, 0.301961, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_aseec"]
 material = SubResource("StandardMaterial3D_aseec")
-size = Vector3(1000, 2, 1000)
+size = Vector3(5, 2, 5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvmmn"]
 sky_top_color = Color(0.301961, 0.454902, 0.878431, 1)
