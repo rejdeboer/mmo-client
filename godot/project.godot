@@ -24,7 +24,7 @@ SocialManager="*res://globals/social_manager.tscn"
 
 [editor]
 
-run/main_run_args="\"user0@test.com\" \"Test123!\" 1"
+run/main_run_args="user0@test.com Test123! 1"
 
 [input]
 
