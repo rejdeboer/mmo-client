@@ -515,7 +515,7 @@ dependencies = [
 [[package]]
 name = "mmo-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#70bfba0c936c4990c15f83cf3b1d788f5b062093"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#f340043c7e05c86b34010c600dc358f54b57b26e"
 dependencies = [
  "base64",
  "flatbuffers",
@@ -552,9 +552,9 @@ dependencies = [
 
 [[package]]
 name = "octets"
-version = "0.3.3"
+version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4df8e8352f73465f015867c7ab24d2c46511bb8148e7177fe823e88f4f1f9765"
+checksum = "2ba5d98c13e549f6f26f7d70808688ab85c6b42eb350ba2524d96c24ebde27e9"
 
 [[package]]
 name = "once_cell"
@@ -779,7 +779,7 @@ dependencies = [
 [[package]]
 name = "schemas"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#70bfba0c936c4990c15f83cf3b1d788f5b062093"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#f340043c7e05c86b34010c600dc358f54b57b26e"
 dependencies = [
  "flatbuffers",
  "flatc-rust",
@@ -1101,7 +1101,7 @@ dependencies = [
 [[package]]
 name = "web-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#70bfba0c936c4990c15f83cf3b1d788f5b062093"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#f340043c7e05c86b34010c600dc358f54b57b26e"
 dependencies = [
  "flatbuffers",
  "futures-util",

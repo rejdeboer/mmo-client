@@ -9,7 +9,7 @@ extends Control
 
 func _ready() -> void:
 	var ip: String = "127.0.0.1"
-	var port: int = 8000
+	var port: int = 7777
 
 	if ip.is_empty() or port <= 0 or port > 65535:
 		printerr("Invalid IP or Port.")
