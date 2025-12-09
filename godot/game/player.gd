@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 @export var movement_speed = 7.5
-@export var jump_velocity = 12.0
-@export var fall_acceleration = 75
+@export var jump_velocity = 3.0
+@export var fall_acceleration = 9.81
 @export var turn_speed_radians = 1.0
 
 @export_range(0.0, 1.0) var mouse_sensitivity = 0.01
@@ -40,9 +40,7 @@ func _physics_process(delta):
 
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		velocity.y -= fall_acceleration * delta
-		is_transform_dirty = true
-	elif Input.is_action_just_pressed("jump"):
-		is_transform_dirty = true
+	elif is_on_floor() and Input.is_action_just_pressed("jump"):
 		NetworkManager.queue_jump()
 		velocity.y = jump_velocity
 
