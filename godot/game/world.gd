@@ -28,6 +28,8 @@ func initialize_world(player_entity: Entity) -> void:
 		player.transform = player_entity.transform
 		player.level = player_entity.level
 		player.character_name = player_entity.name
+		
+		player_frame.setup(player_entity.name, player_entity.hp)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
