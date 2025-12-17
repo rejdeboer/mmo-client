@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://76lsy6jke61l"]
+[gd_scene load_steps=11 format=3 uid="uid://76lsy6jke61l"]
 
 [ext_resource type="Script" uid="uid://cwbc63xo2r7ew" path="res://game/world.gd" id="1_aseec"]
 [ext_resource type="PackedScene" uid="uid://bb5n25dsm3djp" path="res://game/player.tscn" id="1_vn0wg"]
 [ext_resource type="PackedScene" uid="uid://cpjye5voq2x4e" path="res://ui/chat.tscn" id="3_tvmmn"]
+[ext_resource type="PackedScene" uid="uid://cn42adc430knv" path="res://ui/entity_frame.tscn" id="4_4xpgs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdft3"]
 size = Vector3(100, 2, 100)
@@ -49,7 +50,9 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_805w3")
 
-[node name="Chat" parent="." instance=ExtResource("3_tvmmn")]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Chat" parent="UI" instance=ExtResource("3_tvmmn")]
 custom_minimum_size = Vector2(0, 0)
 anchors_preset = 2
 anchor_top = 1.0
@@ -59,3 +62,9 @@ offset_top = -273.0
 offset_right = 425.0
 offset_bottom = -23.0
 grow_vertical = 0
+
+[node name="PlayerFrame" parent="UI" instance=ExtResource("4_4xpgs")]
+offset_left = 11.0
+offset_top = 17.0
+offset_right = -941.0
+offset_bottom = -577.0

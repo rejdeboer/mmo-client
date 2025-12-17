@@ -1,7 +1,8 @@
 extends Node3D
 
 @onready var player: CharacterBody3D = $Player
-@onready var chat: Control = $Chat
+@onready var chat: Control = $UI/Chat
+@onready var player_frame: PanelContainer = $UI/PlayerFrame
 
 var EntityScene = preload("res://game/entity.tscn")
 
