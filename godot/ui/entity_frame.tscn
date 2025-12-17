@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn42adc430knv"]
+[gd_scene load_steps=4 format=3 uid="uid://cn42adc430knv"]
+
+[ext_resource type="Script" uid="uid://l2djagamumjq" path="res://ui/entity_frame.gd" id="1_b3ebg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0iw1g"]
 bg_color = Color(0.6, 0.972549, 0.42745098, 1)
@@ -14,6 +16,7 @@ offset_right = -952.0
 offset_bottom = -594.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_b3ebg")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -26,9 +29,11 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="Name" type="Label" parent="HBoxContainer/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HealthBar" type="ProgressBar" parent="HBoxContainer/Stats"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_0iw1g")
