@@ -1,14 +1,12 @@
 extends CharacterBody3D
 
-var entity_id: int = 0
-var entity_name: String = ""
+var entity_data: Entity
 var target_transform = Transform3D()
 
 
-func setup(id: int, name: String, transform: Transform3D):
-	entity_id = id
-	entity_name = name
-	self.transform = transform
+func setup(entity: Entity):
+	entity_data = entity
+	self.transform = entity.transform
 
 
 func _ready():

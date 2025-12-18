@@ -49,7 +49,7 @@ impl NetworkManager {
     }
 
     #[func]
-    pub fn sync(&mut self, movement_bytes: PackedByteArray, dt: f64) -> Array<Dictionary> {
+    pub fn sync(&mut self, movement_bytes: PackedByteArray, dt: f64) -> Array<VarDictionary> {
         let actions = std::mem::take(&mut self.action_queue);
         self.client
             .send_actions(read_movement_bytes(movement_bytes), actions);

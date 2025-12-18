@@ -74,7 +74,7 @@ func handle_server_events(events: Array[Dictionary]):
 				print("spawning entity")
 				var entity_instance = EntityScene.instantiate()
 				var entity: Entity = event["entity"]
-				entity_instance.setup(entity.id, entity.name, entity.transform)
+				entity_instance.setup(entity)
 				entities[entity.id] = entity_instance
 				add_child(entity_instance)
 			ServerEventType.ENTITY_DESPAWN:

@@ -10,7 +10,7 @@ enum ServerEventType {
     Chat = 4,
 }
 
-pub fn encode_game_event(event: GameEvent) -> Dictionary {
+pub fn encode_game_event(event: GameEvent) -> VarDictionary {
     match event {
         GameEvent::Chat {
             channel,
