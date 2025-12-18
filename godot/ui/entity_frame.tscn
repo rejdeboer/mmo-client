@@ -12,8 +12,9 @@ bg_color = Color(0.6, 0.972549, 0.42745098, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -952.0
-offset_bottom = -594.0
+offset_left = -2.0
+offset_right = -900.0
+offset_bottom = -596.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b3ebg")
@@ -22,15 +23,22 @@ script = ExtResource("1_b3ebg")
 layout_mode = 2
 
 [node name="Portrait" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
 [node name="Stats" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="HBoxContainer/Stats"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Stats"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Name" type="Label" parent="HBoxContainer/Stats/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+text = "Name"
 
 [node name="HealthBar" type="ProgressBar" parent="HBoxContainer/Stats"]
 unique_name_in_owner = true
