@@ -1,9 +1,19 @@
 extends CharacterBody3D
 
+var entity_id: int = 0
+var entity_name: String = ""
 var target_transform = Transform3D()
+
+
+func setup(id: int, name: String, transform: Transform3D):
+	entity_id = id
+	entity_name = name
+	self.transform = transform
+
 
 func _ready():
 	target_transform = self.transform
+
 
 func _physics_process(delta):
 	transform = transform.interpolate_with(target_transform, 0.2)

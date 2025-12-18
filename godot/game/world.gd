@@ -20,25 +20,29 @@ enum ServerEventType {
 	CHAT = 4,
 }
 
+
 func initialize_world(player_entity: Entity) -> void:
 	print("WorldScene: Initializing with data: ", player_entity)
-	
+
 	if player and player_entity:
 		player_entity_id = player_entity.id
 		player.transform = player_entity.transform
 		player.level = player_entity.level
 		player.character_name = player_entity.name
-		
+
 		player_frame.setup(player_entity.name, player_entity.hp)
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 func _process(delta):
 	accumulator += delta
 	while accumulator >= SECONDS_PER_TICK:
 		accumulator -= SECONDS_PER_TICK
 		run_network_tick(delta)
+
 
 func run_network_tick(delta):
 	var buffer = StreamPeerBuffer.new()
@@ -51,6 +55,7 @@ func run_network_tick(delta):
 
 	var events = NetworkManager.sync(buffer.data_array, delta)
 	handle_server_events(events)
+
 
 func handle_server_events(events: Array[Dictionary]):
 	for event in events:
@@ -69,7 +74,7 @@ func handle_server_events(events: Array[Dictionary]):
 				print("spawning entity")
 				var entity_instance = EntityScene.instantiate()
 				var entity: Entity = event["entity"]
-				entity_instance.transform = entity.transform
+				entity_instance.setup(entity.id, entity.name, entity.transform)
 				entities[entity.id] = entity_instance
 				add_child(entity_instance)
 			ServerEventType.ENTITY_DESPAWN:
@@ -83,4 +88,6 @@ func handle_server_events(events: Array[Dictionary]):
 				else:
 					push_warning("tried to despawn entity but it was already gone")
 			ServerEventType.CHAT:
-				chat.receive_game_message(event["message_type"], event["sender_name"], event["text"])
+				chat.receive_game_message(
+					event["message_type"], event["sender_name"], event["text"]
+				)
