@@ -12,5 +12,5 @@ func _on_target_changed(new_target: Entity):
 	if new_target == null:
 		target_frame.visible = false
 	else:
-		target_frame.setup(new_target)
+		target_frame.setup(new_target.name, new_target.hp)
 		target_frame.visible = true

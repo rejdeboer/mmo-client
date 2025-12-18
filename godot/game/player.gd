@@ -20,6 +20,7 @@ var is_right_mouse_down = false
 var is_transform_dirty = false
 var input_vector = Vector2()
 
+
 func _physics_process(delta):
 	var turn_input = Input.get_axis("turn_right", "turn_left")
 	if turn_input != 0:
@@ -38,20 +39,22 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, movement_speed)
 		# %Character/AnimationPlayer.current_animation = "idle"
 
-	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
+	if not is_on_floor():  # If in the air, fall towards the floor. Literally gravity
 		velocity.y -= fall_acceleration * delta
 	elif is_on_floor() and Input.is_action_just_pressed("jump"):
 		NetworkManager.queue_jump()
 		velocity.y = jump_velocity
 
 	move_and_slide()
-	
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			print("HUH")
 			if event.is_pressed():
 				is_left_mouse_down = true
-				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			else:
 				is_left_mouse_down = false
 				if not is_right_mouse_down:
@@ -60,7 +63,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.is_pressed():
 				is_right_mouse_down = true
-				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			else:
 				is_right_mouse_down = false
 				if not is_left_mouse_down:

@@ -19,3 +19,13 @@ func _physics_process(delta):
 	# 	%Character/AnimationPlayer.current_animation = "run"
 	# else:
 	# 	%Character/AnimationPlayer.current_animation = "idle"
+
+
+func _input_event(
+	camera: Camera3D, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int
+) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print("Clicked on: ", entity_data.name)
+			GameManager.set_target(entity_data)
+			get_viewport().set_input_as_handled()

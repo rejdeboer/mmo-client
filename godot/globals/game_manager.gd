@@ -1,6 +1,7 @@
 extends Node
 
 var _pending_character_data: Entity
+var current_target: Entity = null
 
 signal target_changed(entity_data: Entity)
 
@@ -28,3 +29,8 @@ func finish_world_load(world_scene_instance: Node) -> void:
 	get_tree().current_scene = world_scene_instance
 	loading_screen.queue_free()
 	_pending_character_data = null
+
+
+func set_target(entity_data: Entity) -> void:
+	current_target = entity_data
+	target_changed.emit(entity_data)
