@@ -51,7 +51,6 @@ func _physics_process(delta):
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("HUH")
 			if event.is_pressed():
 				is_left_mouse_down = true
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
