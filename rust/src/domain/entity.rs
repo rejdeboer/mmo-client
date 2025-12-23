@@ -30,7 +30,10 @@ pub struct PlayerAttributes {
 
 #[derive(GodotClass, Debug)]
 #[class(base=RefCounted, init)]
-pub struct NpcAttributes {}
+pub struct NpcAttributes {
+    #[export]
+    pub asset_id: u32,
+}
 
 impl From<mmo_client::Entity> for Entity {
     fn from(entity: mmo_client::Entity) -> Self {
@@ -42,7 +45,9 @@ impl From<mmo_client::Entity> for Entity {
                 character_id,
                 guild_name: guild_name.as_ref().map_or(GString::new(), GString::from),
             })),
-            EntityAttributes::Npc => Variant::from(Gd::from_object(NpcAttributes {})),
+            EntityAttributes::Npc { asset_id } => {
+                Variant::from(Gd::from_object(NpcAttributes { asset_id }))
+            }
         };
 
         Self {
