@@ -33,11 +33,11 @@ func _physics_process(delta):
 		is_transform_dirty = true
 		velocity.x = direction.x * movement_speed
 		velocity.z = direction.z * movement_speed
-		# %Character/AnimationPlayer.current_animation = "run"
+		%Character/AnimationPlayer.current_animation = "Running_A"
 	else:
 		velocity.x = move_toward(velocity.x, 0, movement_speed)
 		velocity.z = move_toward(velocity.z, 0, movement_speed)
-		# %Character/AnimationPlayer.current_animation = "idle"
+		%Character/AnimationPlayer.current_animation = "Idle_A"
 
 	if not is_on_floor():  # If in the air, fall towards the floor. Literally gravity
 		velocity.y -= fall_acceleration * delta

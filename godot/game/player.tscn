@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c4do020mjxx7i" path="res://assets/models/mannequin.glb" id="1_dadds"]
 [ext_resource type="Script" uid="uid://1jofxio8bpf5" path="res://game/player.gd" id="1_w5y0b"]
-[ext_resource type="PackedScene" uid="uid://ce51dl3h0vpch" path="res://assets/models/adventurers/Characters/gltf/Knight.glb" id="3_du4nq"]
+[ext_resource type="PackedScene" uid="uid://3udiu1ks4di7" path="res://entities/knight.tscn" id="3_du4nq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w5y0b"]
 radius = 1.0
@@ -22,6 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_w5y0b")
 
 [node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="CharacterModelTODO" parent="Pivot" instance=ExtResource("1_dadds")]
 unique_name_in_owner = true
@@ -35,7 +36,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_w5y0b")
 
 [node name="Character" parent="Pivot" instance=ExtResource("3_du4nq")]
-transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 0.78, 0, 0, 0)
+unique_name_in_owner = true
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 unique_name_in_owner = true
@@ -46,5 +47,3 @@ spring_length = 3.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
 unique_name_in_owner = true
-
-[editable path="Pivot/Character"]
