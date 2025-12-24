@@ -1,16 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://xuyfm6vb4wwi"]
+[gd_scene load_steps=3 format=3 uid="uid://xuyfm6vb4wwi"]
 
 [ext_resource type="Script" uid="uid://dvabls2ajji3p" path="res://game/entity.gd" id="1_k4d2a"]
-[ext_resource type="PackedScene" uid="uid://c4do020mjxx7i" path="res://assets/models/mannequin.glb" id="2_yqfaw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w5y0b"]
 radius = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4d2a"]
-albedo_color = Color(0.309804, 0.662745, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_k4d2a"]
-material = SubResource("StandardMaterial3D_k4d2a")
 
 [node name="Entity" type="CharacterBody3D"]
 collision_layer = 2
@@ -22,14 +15,3 @@ shape = SubResource("SphereShape3D_w5y0b")
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="CharacterHidden" parent="Pivot" instance=ExtResource("2_yqfaw")]
-unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-visible = false
-
-[node name="CharacterTest" type="MeshInstance3D" parent="Pivot"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_k4d2a")
