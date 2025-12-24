@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://0dokoavfq28o"]
+
+[ext_resource type="PackedScene" uid="uid://dlw2vsijeejvc" path="res://assets/models/monsters/characters/gltf/Skeleton_Warrior.glb" id="1_10t2p"]
+
+[node name="Skeleton_Warrior" instance=ExtResource("1_10t2p")]

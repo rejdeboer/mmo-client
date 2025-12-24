@@ -21,6 +21,7 @@ ConfigManager="*res://globals/config_manager.tscn"
 PlayerSession="*res://globals/player_session.tscn"
 GameManager="*res://globals/game_manager.gd"
 SocialManager="*res://globals/social_manager.tscn"
+GameAssets="*res://globals/game_assets.gd"
 
 [editor]
 

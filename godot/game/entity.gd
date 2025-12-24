@@ -1,16 +1,27 @@
 extends CharacterBody3D
 
+@onready var pivot = $Pivot
 var entity_data: Entity
 var target_transform = Transform3D()
+var entity_template: EntityTemplate
 
 
 func setup(entity: Entity):
 	entity_data = entity
 	self.transform = entity.transform
 
+	if entity.attributes is PlayerAttributes:
+		var attributes: PlayerAttributes = entity.attributes
+		# NOTE: Player asset has ID 0 for now
+		entity_template = GameAssets.get_by_id(0)
+	elif entity.attributes is NpcAttributes:
+		var attributes: NpcAttributes = entity.attributes
+		entity_template = GameAssets.get_by_id(attributes.asset_id)
+
 
 func _ready():
 	target_transform = self.transform
+	pivot.add_child(entity_template.scene.instantiate())
 
 
 func _physics_process(delta):

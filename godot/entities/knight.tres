@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EntityTemplate" load_steps=3 format=3 uid="uid://cl5f8y2hy24gc"]
+
+[ext_resource type="PackedScene" uid="uid://3udiu1ks4di7" path="res://entities/knight.tscn" id="1_k3mx7"]
+[ext_resource type="Script" uid="uid://dj7srrpwiu68i" path="res://entities/entity_template.gd" id="2_u7pgr"]
+
+[resource]
+script = ExtResource("2_u7pgr")
+scene = ExtResource("1_k3mx7")
+metadata/_custom_type_script = "uid://dj7srrpwiu68i"

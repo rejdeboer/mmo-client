@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EntityTemplate" load_steps=3 format=3 uid="uid://4383shry3qqq"]
+
+[ext_resource type="PackedScene" uid="uid://0dokoavfq28o" path="res://entities/skeleton_warrior.tscn" id="1_40si1"]
+[ext_resource type="Script" uid="uid://dj7srrpwiu68i" path="res://entities/entity_template.gd" id="2_hlvke"]
+
+[resource]
+script = ExtResource("2_hlvke")
+scene = ExtResource("1_40si1")
+metadata/_custom_type_script = "uid://dj7srrpwiu68i"

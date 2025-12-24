@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AssetLibrary" load_steps=5 format=3 uid="uid://b2r3ulmganwal"]
+
+[ext_resource type="Script" uid="uid://dj7srrpwiu68i" path="res://entities/entity_template.gd" id="1_6nbpt"]
+[ext_resource type="Resource" uid="uid://cl5f8y2hy24gc" path="res://entities/knight.tres" id="2_7h2wk"]
+[ext_resource type="Script" uid="uid://birx5wkfhmeys" path="res://entities/asset_library.gd" id="2_u68uq"]
+[ext_resource type="Resource" uid="uid://4383shry3qqq" path="res://entities/skeleton_warrior.tres" id="3_7h2wk"]
+
+[resource]
+script = ExtResource("2_u68uq")
+entity_assets = Dictionary[int, ExtResource("1_6nbpt")]({
+0: ExtResource("2_7h2wk"),
+1: ExtResource("3_7h2wk")
+})
+metadata/_custom_type_script = "uid://birx5wkfhmeys"
