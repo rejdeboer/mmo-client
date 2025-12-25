@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+const MASK_INTERACTABLE = 4
 @export var movement_speed = 7.5
 @export var jump_velocity = 3.0
 @export var fall_acceleration = 9.81
@@ -53,29 +54,48 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
 				is_left_mouse_down = true
-				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				_handle_left_click_down(event.position)
 			else:
 				is_left_mouse_down = false
-				if not is_right_mouse_down:
+				if not is_right_mouse_down and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.is_pressed():
 				is_right_mouse_down = true
-				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			else:
 				is_right_mouse_down = false
-				if not is_left_mouse_down:
+				if not is_left_mouse_down and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		if is_left_mouse_down or is_right_mouse_down:
-			_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
-			# Prevent the camera from rotating too far up or down.
-			_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, -tilt_limit, tilt_limit)
+	if event is InputEventMouseMotion and (is_left_mouse_down or is_right_mouse_down):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
+		# Prevent the camera from rotating too far up or down.
+		_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, -tilt_limit, tilt_limit)
 
-			if is_right_mouse_down:
-				self.rotate_y(-event.relative.x * mouse_sensitivity)
-				is_transform_dirty = true
-			else:
-				_camera_pivot.rotation.y += -event.relative.x * mouse_sensitivity
+		if is_right_mouse_down:
+			self.rotate_y(-event.relative.x * mouse_sensitivity)
+			is_transform_dirty = true
+		else:
+			_camera_pivot.rotation.y += -event.relative.x * mouse_sensitivity
+
+
+func _handle_left_click_down(pos: Vector2):
+	var camera = get_viewport().get_camera_3d()
+	var space_state = get_world_3d().direct_space_state
+
+	var from = camera.project_ray_origin(pos)
+	var to = from + camera.project_ray_normal(pos) * 1000.0
+
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.collision_mask = MASK_INTERACTABLE
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+
+	var result = space_state.intersect_ray(query)
+	if result:
+		var hit_object = result.collider
+		if "entity_data" in hit_object:
+			print("Targeted: ", hit_object.name)
+			GameManager.set_target(hit_object.entity_data)
