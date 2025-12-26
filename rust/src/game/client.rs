@@ -72,6 +72,14 @@ impl NetworkManager {
     }
 
     #[func]
+    pub fn queue_cast_spell(&mut self, target_entity_id: u64, spell_id: u32) {
+        self.action_queue.push(PlayerAction::CastSpell {
+            target_entity_id,
+            spell_id,
+        });
+    }
+
+    #[func]
     /// Should only be used for local testing
     pub fn connect_unsecure(&mut self, host: String, port: u16, character_id: i32) {
         godot_print!(

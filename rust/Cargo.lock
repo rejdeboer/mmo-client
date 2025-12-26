@@ -137,6 +137,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "errno"
+version = "0.3.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
+dependencies = [
+ "libc",
+ "windows-sys 0.61.2",
+]
+
+[[package]]
 name = "flatbuffers"
 version = "25.12.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -515,7 +525,7 @@ dependencies = [
 [[package]]
 name = "mmo-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#a8c8faf0469a298a446f2d9db33c117f2b184960"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#748e9e10f23a4cc32bce197b7f0d9776fbaede63"
 dependencies = [
  "base64",
  "flatbuffers",
@@ -779,7 +789,7 @@ dependencies = [
 [[package]]
 name = "schemas"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#a8c8faf0469a298a446f2d9db33c117f2b184960"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#748e9e10f23a4cc32bce197b7f0d9776fbaede63"
 dependencies = [
  "flatbuffers",
  "flatc-rust",
@@ -840,10 +850,11 @@ dependencies = [
 
 [[package]]
 name = "signal-hook-registry"
-version = "1.4.7"
+version = "1.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7664a098b8e616bdfcc2dc0e9ac44eb231eedf41db4e9fe95d8d32ec728dedad"
+checksum = "c4db69cba1110affc0e9f7bcd48bbf87b3f4fc7c61fc9155afd4c469eb3d6c1b"
 dependencies = [
+ "errno",
  "libc",
 ]
 
@@ -1101,7 +1112,7 @@ dependencies = [
 [[package]]
 name = "web-client"
 version = "0.1.0"
-source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#a8c8faf0469a298a446f2d9db33c117f2b184960"
+source = "git+ssh://git@github.com/rejdeboer/mmo-server.git?branch=main#748e9e10f23a4cc32bce197b7f0d9776fbaede63"
 dependencies = [
  "flatbuffers",
  "futures-util",
